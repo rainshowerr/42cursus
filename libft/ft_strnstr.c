@@ -1,35 +1,46 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test.c                                             :+:      :+:    :+:   */
+/*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: seoshin <seoshin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/06 15:08:44 by seoshin           #+#    #+#             */
-/*   Updated: 2022/07/07 16:14:33 by seoshin          ###   ########.fr       */
+/*   Created: 2022/07/07 15:14:57 by seoshin           #+#    #+#             */
+/*   Updated: 2022/07/07 15:29:59 by seoshin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdlib.h>
+
+char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
+{
+	size_t	i;
+	size_t	j;
+
+	i = 0;
+	j = 0;
+	if (needle[j] == '\0')
+		return ((char *)haystack);
+	
+	while (haystack[i])
+	{
+		while (haystack[i + j] == needle[j] && haystack[i + j] != '\0' && i + j < len)
+			j++;
+		if (!needle[j])
+			return ((char *)&haystack[i]);
+		i++;
+		j = 0;
+	}
+	return (0);
+}
+
 #include <stdio.h>
-#include <ctype.h>
-#include <string.h>
-
-
 int	main(void)
 {
-	int x = 0;
-	memset(&x, 1, sizeof(int));
-	printf("%d\n", x);
-
 	const char *largestring = "Foo Bar Baz";
     const char *smallstring = "Bar";
     char *ptr;
 
-    ptr = strnstr(largestring, smallstring, 6);
+    ptr = ft_strnstr(largestring, smallstring, 6);
 	printf("%s", ptr);
-	
-	printf("%d", isalnum(3));
-	printf("%d", isalnum('3'));
-	printf("%d", isprint(32));
-
 }

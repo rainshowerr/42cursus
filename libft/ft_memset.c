@@ -1,18 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_toupper.c                                       :+:      :+:    :+:   */
+/*   ft_memset.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: seoshin <seoshin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/06 16:02:13 by seoshin           #+#    #+#             */
-/*   Updated: 2022/07/07 16:16:48 by seoshin          ###   ########.fr       */
+/*   Created: 2022/07/07 15:50:25 by seoshin           #+#    #+#             */
+/*   Updated: 2022/07/07 16:47:40 by seoshin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_toupper(int c)
+#include <stdlib.h>
+#include <stdio.h>
+
+void	*ft_memset(void *b, int c, size_t len)
 {
-	if ('a' <= c <= 'z')
-		c -= 'a' - 'A';
-	return c;
+	unsigned char * bb;
+	size_t			i;
+	
+	bb = (unsigned char *)b;
+	c = (unsigned char)c;
+	i = 0;
+	while(i < len)
+	{
+		bb[i] = c;
+		i++;
+	}
+	return (void *)bb;
+}
+
+int main()
+{
+	int x = 5;
+	memset(&x, 1, sizeof(x));
+	printf("%d", x);
+	x
 }

@@ -1,18 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_toupper.c                                       :+:      :+:    :+:   */
+/*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: seoshin <seoshin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/06 16:02:13 by seoshin           #+#    #+#             */
-/*   Updated: 2022/07/07 16:16:48 by seoshin          ###   ########.fr       */
+/*   Created: 2022/07/07 14:19:57 by seoshin           #+#    #+#             */
+/*   Updated: 2022/07/07 15:13:55 by seoshin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_toupper(int c)
+char	*strchr(const char *s, int c)
 {
-	if ('a' <= c <= 'z')
-		c -= 'a' - 'A';
-	return c;
+	int idx;
+
+	idx = 0;
+	while (idx <= ft_strlen(s))
+	{
+		if (s[idx] == c)
+			return ((char *)&s[idx]);
+		idx++;
+	}
+	return 0;
 }
