@@ -1,0 +1,6 @@
+{
+    "codam-norminette-3.command": "norm",
+    "files.associations": {
+        "libft.h": "c"
+    }
+}

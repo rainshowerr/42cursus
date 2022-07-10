@@ -22,7 +22,7 @@ size_t	ft_strlen(const char	*src)
 	return (k);
 }
 
-char *ft_strrchr(const char *s, int c)
+char	*ft_strrchr(const char *s, int c)
 {
 	size_t		idx;
 
@@ -33,5 +33,5 @@ char *ft_strrchr(const char *s, int c)
 			return ((char *)&s[idx]);
 		idx--;
 	}
-	return 0;
+	return (0);
 }

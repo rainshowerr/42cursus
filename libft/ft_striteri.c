@@ -22,14 +22,14 @@ size_t	ft_strlen(const char	*src)
 	return (k);
 }
 
-void ft_striteri(char *s, void (*f)(unsigned int, char*))
+void	ft_striteri(char *s, void (*f)(unsigned int, char*))
 {
-    int i;
+	int	i;
 
-    i = 0;
-    while(i < (int)ft_strlen(s))
-    {
-        f(i, &s[i]);
-        i++;
-    }
+	i = 0;
+	while (i < (int)ft_strlen(s))
+	{
+		f(i, &s[i]);
+		i++;
+	}
 }

@@ -14,7 +14,7 @@
 
 size_t	ft_strlen(const char	*src)
 {
-	size_t  k;
+	size_t	k;
 
 	k = 0;
 	while (src[k] != '\0')
@@ -22,8 +22,8 @@ size_t	ft_strlen(const char	*src)
 	return (k);
 }
 
-void ft_putendl_fd(char *s, int fd)
+void	ft_putendl_fd(char *s, int fd)
 {
-    write(fd, s, ft_strlen(s));
-    write(fd, "\n", 1);
+	write(fd, s, ft_strlen(s));
+	write(fd, "\n", 1);
 }

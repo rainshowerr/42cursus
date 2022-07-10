@@ -22,16 +22,16 @@ void	*ft_memmove(void *dst, const void *src, size_t len)
 	to = (unsigned char *) dst;
 	from = (unsigned char *) src;
 	i = 0;
-	while(i < len)
+	while (i < len)
 	{
 		temp[i] = from[i];
 		i++;
 	}
 	i = 0;
-	while(i < len)
+	while (i < len)
 	{
 		to[i] = temp[i];
 		i++;
 	}
-	return (void *)to;
+	return ((void *)to);
 }

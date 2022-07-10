@@ -10,8 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-
-
 #include "includes/libft.h"
 
 size_t	ft_strlen(const char	*src)
@@ -26,7 +24,7 @@ size_t	ft_strlen(const char	*src)
 
 char	*strchr(const char *s, int c)
 {
-	int idx;
+	int	idx;
 
 	idx = 0;
 	while (idx <= (int)ft_strlen(s))
@@ -35,5 +33,5 @@ char	*strchr(const char *s, int c)
 			return ((char *)&s[idx]);
 		idx++;
 	}
-	return 0;
+	return (0);
 }
