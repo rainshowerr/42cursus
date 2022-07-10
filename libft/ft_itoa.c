@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
+#include "includes/libft.h"
 
 size_t ft_space(int n)
 {
@@ -33,7 +33,6 @@ size_t ft_space(int n)
     return space;
 }
 
-#include <stdio.h>
 char *ft_itoa(int n)
 {
     char    *ans;
@@ -57,9 +56,4 @@ char *ft_itoa(int n)
         n /= 10;
     }
     return ans;
-}
-
-int main(){
-    int x = -2147483647;
-    printf("%s", ft_itoa(x));
 }

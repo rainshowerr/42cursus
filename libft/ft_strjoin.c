@@ -1,4 +1,4 @@
-#include <stdlib.h>
+#include "includes/libft.h"
 
 size_t	ft_strlen(const char	*src)
 {
@@ -32,11 +32,4 @@ char *ft_strjoin(char const *s1, char const *s2)
     }
     str[i] = '\0';
     return (str);
-}
-
-#include <stdio.h>
-int main(){
-    char* s1 = "seo";
-    char* s2 = "shin";
-    printf("%s", ft_strjoin(s1, s2));
 }

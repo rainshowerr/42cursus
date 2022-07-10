@@ -1,4 +1,4 @@
-#include <stdlib.h>
+#include "includes/libft.h"
 
 int	is_charset(char c, char *charset)
 {
@@ -35,7 +35,7 @@ int	get_row(char *str, char *charset)
 	return (row);
 }
 
-char	*w_malloc(char *str, char *charset, int size)
+char	*w_malloc(char *str, int size)
 {
 	int		idx;
 	char	*word;
@@ -74,17 +74,10 @@ char	**ft_split(char *str, char *charset)
 			size = 0;
 			while (str[i + size] && !is_charset(str[i + size], charset))
 				size++;
-			result[k++] = w_malloc(&str[i], charset, size);
+			result[k++] = w_malloc(&str[i], size);
 			i += size;
 		}
 	}
 	result[k] = 0;
 	return (result);
-}
-
-#include <stdio.h>
-int main(){
-    char *s1 = "12seo12shin21seo";
-    char *set = "12";
-    printf("%s %s %s", ft_split(s1, set)[0], ft_split(s1, set)[1], ft_split(s1, set)[2]);
 }

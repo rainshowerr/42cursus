@@ -36,12 +36,3 @@ int	ft_atoi(const char *str)
 	}
 	return (sign * k);
 }
-
-#include <stdio.h>
-#include <stdlib.h>
-int main()
-{
-	const char *str = "  \v\t	-88";
-	printf("%d", ft_atoi(str));
-	printf("%d", atoi(str));
-}

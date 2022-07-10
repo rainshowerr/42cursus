@@ -10,8 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-#include <stdlib.h>
+#include "includes/libft.h"
 
 size_t  ft_strlen(const char	*src)
 {
@@ -26,8 +25,4 @@ size_t  ft_strlen(const char	*src)
 void ft_putstr_fd(char *s, int fd)
 {
     write(fd, s, ft_strlen(s));
-}
-
-int main(){
-    ft_putstr_fd("seoshin", 1);
 }

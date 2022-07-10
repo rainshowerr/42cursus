@@ -10,8 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-#include <stdio.h>
+#include "includes/libft.h"
 
 size_t	ft_strlen(const char	*src)
 {
@@ -28,7 +27,7 @@ char *ft_strrchr(const char *s, int c)
 	size_t		idx;
 
 	idx = ft_strlen(s);
-	while (0 <= idx)
+	while (0 <= (int)idx)
 	{
 		if (s[idx] == c)
 			return ((char *)&s[idx]);
@@ -36,10 +35,3 @@ char *ft_strrchr(const char *s, int c)
 	}
 	return 0;
 }
-
-/*
-int main()
-{
-	printf("%s", ft_strrchr("seoshin", 115));
-}
-*/

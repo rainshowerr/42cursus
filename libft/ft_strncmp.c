@@ -10,8 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-
 int ft_strncmp(const char *s1, const char *s2, size_t n)
 {
 	size_t i = 0;
@@ -22,12 +20,4 @@ int ft_strncmp(const char *s1, const char *s2, size_t n)
 		i++;
 	}
 	return (0);
-}
-
-#include <stdio.h>
-int main(void)
-{
-	const char *s1 = "seoshin";
-	const char *s2 = "seoshinn";
-	printf("%d", ft_strncmp(s1, s2, 10));
 }

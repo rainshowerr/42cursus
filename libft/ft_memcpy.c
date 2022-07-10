@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
+#include "includes/libft.h"
 
 void	*ft_memcpy(void *dst, const void *src, size_t n)
 {
@@ -28,12 +28,3 @@ void	*ft_memcpy(void *dst, const void *src, size_t n)
 	}
 	return (void *)to;
 }
-/*
-#include <stdio.h>
-int main(void)
-{
-	int A[10] ={1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
-	ft_memcpy(A + 1, A, 9 * sizeof(int));
-	printf("%d %d %d %d", A[0], A[1], A[2], A[3]);
-}
-*/

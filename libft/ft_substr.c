@@ -1,4 +1,4 @@
-#include <stdlib.h>
+#include "includes/libft.h"
 
 char *ft_substr(char const *s, unsigned int start, size_t len)
 {
@@ -14,9 +14,4 @@ char *ft_substr(char const *s, unsigned int start, size_t len)
         start++;
     }
     return str;
-}
-
-#include <stdio.h>
-int main(){
-    printf("%s", ft_substr("seoshin", 3, 4));
 }
