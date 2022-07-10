@@ -3,12 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: seoshin <seoshin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: seoshin <seoshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/07 17:37:21 by seoshin           #+#    #+#             */
-/*   Updated: 2022/07/07 18:02:08 by seoshin          ###   ########.fr       */
+/*   Created: 2022/07/10 20:42:22 by seoshin           #+#    #+#             */
+/*   Updated: 2022/07/10 20:42:22 by seoshin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+
 
 #include "includes/libft.h"
 

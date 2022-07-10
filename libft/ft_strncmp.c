@@ -3,12 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strncmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: seoshin <seoshin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: seoshin <seoshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/07 14:02:35 by seoshin           #+#    #+#             */
-/*   Updated: 2022/07/07 18:35:32 by seoshin          ###   ########.fr       */
+/*   Created: 2022/07/10 20:42:50 by seoshin           #+#    #+#             */
+/*   Updated: 2022/07/10 20:42:50 by seoshin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "includes/libft.h"
 
 int ft_strncmp(const char *s1, const char *s2, size_t n)
 {

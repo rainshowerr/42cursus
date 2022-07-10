@@ -3,16 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   ft_tolower.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: seoshin <seoshin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: seoshin <seoshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/07 14:19:03 by seoshin           #+#    #+#             */
-/*   Updated: 2022/07/07 14:19:33 by seoshin          ###   ########.fr       */
+/*   Created: 2022/07/10 20:42:32 by seoshin           #+#    #+#             */
+/*   Updated: 2022/07/10 20:42:32 by seoshin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+
+
 int	ft_tolower(int c)
 {
-	if ('A' <= c <= 'Z')
+	if ('A' <= c && c <= 'Z')
 		c += 'a' - 'A';
 	return c;
 }
