@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/libft.h"
+#include "./libft.h"
 
 size_t	ft_strlen(const char	*src)
 {
@@ -22,7 +22,7 @@ size_t	ft_strlen(const char	*src)
 	return (k);
 }
 
-char	*strchr(const char *s, int c)
+char	*ft_strchr(const char *s, int c)
 {
 	int	idx;
 

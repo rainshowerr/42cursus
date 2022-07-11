@@ -10,21 +10,17 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/libft.h"
+#include "./libft.h"
 
 size_t	ft_space(int n)
 {
 	size_t	space;
 
-	n = (long long)n;
 	if (n == 0)
 		return (1);
 	space = 0;
 	if (n < 0)
-	{
 		space++;
-		n *= -1;
-	}
 	while (n)
 	{
 		n /= 10;
@@ -35,26 +31,27 @@ size_t	ft_space(int n)
 
 char	*ft_itoa(int n)
 {
-	char	*ans;
-	int		idx;
+	char		*ans;
+	int			idx;
+	long long	nn;
 
-	n = (long long)n;
-	ans = (char *)malloc(sizeof(char) * (ft_space(n) + 1));
+	nn = (long long)n;
+	ans = (char *)malloc(sizeof(char) * (ft_space(nn) + 1));
 	if (!ans)
 		return (0);
-	idx = ft_space(n);
+	idx = ft_space(nn);
 	ans[idx--] = '\0';
-	if (n == 0)
+	if (nn == 0)
 		ans[idx] = '0';
-	else if (n < 0)
+	else if (nn < 0)
 	{
 		ans[0] = '-';
-		n *= -1;
+		nn *= -1;
 	}
-	while (n)
+	while (nn)
 	{
-		ans[idx--] = (n % 10) + '0';
-		n /= 10;
+		ans[idx--] = (nn % 10) + '0';
+		nn /= 10;
 	}
 	return (ans);
 }
