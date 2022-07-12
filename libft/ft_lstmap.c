@@ -12,19 +12,20 @@
 
 #include "libft.h"
 
-void ft_lstadd_back(t_list **lst, t_list *new)
+void	ft_lstadd_back(t_list **lst, t_list *new)
 {
-	while((*lst)->next)
+	while ((*lst)->next)
 	{
 		*lst = (*lst)->next;
 	}
 	(*lst)->next = new;
 }
 
-void ft_lstclear(t_list **lst, void (*del)(void *))
+void	ft_lstclear(t_list **lst, void (*del)(void *))
 {
-	t_list *temp;
-	while(*lst)
+	t_list	*temp;
+
+	while (*lst)
 	{
 		temp = *lst;
 		*lst = (*lst)->next;
@@ -32,28 +33,26 @@ void ft_lstclear(t_list **lst, void (*del)(void *))
 	}
 }
 
-t_list *ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
+t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {
 	t_list	**start;
 	t_list	*newlst;
 
 	*start = newlst;
-	if (!newlst)
-		return (0);
-	while(lst)
+	while (lst)
 	{
 		newlst = (t_list *)malloc(sizeof(t_list));
 		newlst->content = f(lst->content);
-		if (newlst->next) // 다음노드가 있는경우
+		if (newlst->next)
 		{
 			newlst->next = (t_list *)malloc(sizeof(t_list));
-			if (!newlst->next) // 할당실패시
+			if (!newlst->next)
 			{
 				ft_lstclear(start, del);
 				return (0);
 			}
 		}
-		else // 다음노드가 없는경우
+		else
 			newlst->next = 0;
 		ft_lstadd_back(start, newlst);
 		newlst = newlst->next;
