@@ -1,23 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncmp.c                                       :+:      :+:    :+:   */
+/*   ft_lstadd_front.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: seoshin <seoshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/10 20:42:50 by seoshin           #+#    #+#             */
-/*   Updated: 2022/07/10 20:42:50 by seoshin          ###   ########.fr       */
+/*   Created: 2022/07/12 15:17:44 by seoshin           #+#    #+#             */
+/*   Updated: 2022/07/12 15:17:44 by seoshin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_strncmp(const char *s1, const char *s2, size_t n)
+void	ft_lstadd_front(t_list **lst, t_list *new)
 {
-	size_t	i;
-
-	i = 0;
-	while (!(s1[i] == '\0' && s2[i] == '\0') && i < n && s1[i] == s2[i])
-		i++;
-	return (s1[i] - s2[i]);
+	new->next = *lst;
+	*lst = new;
 }

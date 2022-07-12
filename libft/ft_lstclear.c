@@ -1,23 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncmp.c                                       :+:      :+:    :+:   */
+/*   ft_lstclear.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: seoshin <seoshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/10 20:42:50 by seoshin           #+#    #+#             */
-/*   Updated: 2022/07/10 20:42:50 by seoshin          ###   ########.fr       */
+/*   Created: 2022/07/12 15:45:43 by seoshin           #+#    #+#             */
+/*   Updated: 2022/07/12 15:45:43 by seoshin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_strncmp(const char *s1, const char *s2, size_t n)
+void ft_lstclear(t_list **lst, void (*del)(void *))
 {
-	size_t	i;
-
-	i = 0;
-	while (!(s1[i] == '\0' && s2[i] == '\0') && i < n && s1[i] == s2[i])
-		i++;
-	return (s1[i] - s2[i]);
+	t_list *temp;
+	while(*lst)
+	{
+		temp = *lst;
+		*lst = (*lst)->next;
+		free(temp);
+	}
 }

@@ -30,7 +30,7 @@ INCLUDES	= libft.h
 NAME	= libft.a
 
 .c.o:
-	$(GCC) $(CFLAGS) -c $< -o $(<:.c=.o) -I $(INCLUDES)
+	$(GCC) $(CFLAGS) -c $< -o $(<:.c=.o)
 
 $(NAME):	$(OBJS)
 		ar rc $(NAME) $(OBJS)
