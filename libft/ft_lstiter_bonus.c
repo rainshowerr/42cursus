@@ -1,26 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstsize.c                                       :+:      :+:    :+:   */
+/*   ft_lstiter.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: seoshin <seoshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/12 15:31:07 by seoshin           #+#    #+#             */
-/*   Updated: 2022/07/12 15:31:07 by seoshin          ###   ########.fr       */
+/*   Created: 2022/07/12 15:42:04 by seoshin           #+#    #+#             */
+/*   Updated: 2022/07/12 15:42:04 by seoshin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "libft_bonus.h"
 
-int	ft_lstsize(t_list *lst)
+void	ft_lstiter(t_list *lst, void (*f)(void *))
 {
-	int	cnt;
-
-	cnt = 0;
 	while (lst)
 	{
+		f(lst->content);
 		lst = lst->next;
-		cnt++;
 	}
-	return (cnt);
 }

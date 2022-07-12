@@ -65,14 +65,14 @@ char	*w_malloc(char *str, int size)
 	return (word);
 }
 
-char	**ft_split(char *str, char *charset)
+char	**ft_split(char const *s, char c)
 {
 	int		i;
 	int		k;
 	int		size;
 	char	**result;
 
-	result = (char **)malloc(sizeof(char *) * (get_row(str, charset) + 1));
+	result = (char **)malloc(sizeof(char *) * (get_row(s, c) + 1));
 	if (!result)
 		return (0);
 	k = 0;

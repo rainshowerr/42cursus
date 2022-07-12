@@ -21,7 +21,7 @@ void	*ft_calloc(size_t nmemb, size_t size)
 	if (!space)
 		return (0);
 	i = 0;
-	while (i < size)
+	while (i < nmemb * size)
 	{
 		space[i] = 0;
 		i++;

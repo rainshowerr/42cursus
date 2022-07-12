@@ -1,20 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstdelone.c                                     :+:      :+:    :+:   */
+/*   libft_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: seoshin <seoshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/12 15:38:02 by seoshin           #+#    #+#             */
-/*   Updated: 2022/07/12 15:38:02 by seoshin          ###   ########.fr       */
+/*   Created: 2022/07/12 17:33:21 by seoshin           #+#    #+#             */
+/*   Updated: 2022/07/12 17:33:21 by seoshin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#ifndef LIBFT_BONUS_H
+# define LIBFT_BONUS_H
 
-void	ft_lstdelone(t_list *lst, void (*del)(void *))
+typedef struct s_list
 {
-	del(lst->content);
-	free(lst->content);
-	lst = lst->next;
-}
+	void			*content;
+	struct s_list	*next;
+}	t_list;
+
+#endif

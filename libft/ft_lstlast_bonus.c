@@ -1,22 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstiter.c                                       :+:      :+:    :+:   */
+/*   ft_lstlast.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: seoshin <seoshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/12 15:42:04 by seoshin           #+#    #+#             */
-/*   Updated: 2022/07/12 15:42:04 by seoshin          ###   ########.fr       */
+/*   Created: 2022/07/12 15:32:36 by seoshin           #+#    #+#             */
+/*   Updated: 2022/07/12 15:32:36 by seoshin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "libft_bonus.h"
 
-void	ft_lstiter(t_list *lst, void (*f)(void *))
+t_list	*ft_lstlast(t_list *lst)
 {
-	while (lst)
-	{
-		f(lst->content);
+	while (lst->next)
 		lst = lst->next;
-	}
+	return (lst);
 }

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: seoshin <seoshin@student.42.fr>            +#+  +:+       +#+         #
+#    By: seoshin <seoshin@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/11 17:24:05 by seoshin           #+#    #+#              #
-#    Updated: 2022/07/11 18:28:08 by seoshin          ###   ########.fr        #
+#    Updated: 2022/07/12 17:51:08 by seoshin          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,7 +40,9 @@ all :	$(NAME)
 clean:
 	rm -f $(OBJS)
 
-fclean:		clean
+fclean:	clean
 		rm -f $(NAME)
 
 re:	fclean all
+
+.PHONY:	all clean fclean re

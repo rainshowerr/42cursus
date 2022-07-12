@@ -1,23 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstnew.c                                        :+:      :+:    :+:   */
+/*   ft_lstdelone.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: seoshin <seoshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/12 15:16:25 by seoshin           #+#    #+#             */
-/*   Updated: 2022/07/12 15:16:25 by seoshin          ###   ########.fr       */
+/*   Created: 2022/07/12 15:38:02 by seoshin           #+#    #+#             */
+/*   Updated: 2022/07/12 15:38:02 by seoshin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "libft_bonus.h"
 
-t_list	*ft_lstnew(void *content)
+void	ft_lstdelone(t_list *lst, void (*del)(void *))
 {
-	t_list	*new;
-
-	new = (t_list *)malloc(sizeof(t_list));
-	new->content = content;
-	new->next = 0;
-	return (new);
+	del(lst->content);
+	free(lst->content);
+	lst = lst->next;
 }
