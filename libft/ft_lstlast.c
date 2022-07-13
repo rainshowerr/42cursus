@@ -1,22 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libft_bonus.h                                      :+:      :+:    :+:   */
+/*   ft_lstlast.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: seoshin <seoshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/12 17:33:21 by seoshin           #+#    #+#             */
-/*   Updated: 2022/07/12 17:33:21 by seoshin          ###   ########.fr       */
+/*   Created: 2022/07/12 15:32:36 by seoshin           #+#    #+#             */
+/*   Updated: 2022/07/12 15:32:36 by seoshin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBFT_BONUS_H
-# define LIBFT_BONUS_H
+#include "./libft.h"
 
-typedef struct s_list
+t_list	*ft_lstlast(t_list *lst)
 {
-	void			*content;
-	struct s_list	*next;
-}	t_list;
-
-#endif
+	while (lst->next)
+		lst = lst->next;
+	return (lst);
+}

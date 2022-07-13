@@ -12,42 +12,28 @@
 
 #include "./libft.h"
 
-int	is_charset(char c, char *charset)
-{
-	int	i;
-
-	i = 0;
-	while (charset[i])
-	{
-		if (c == charset[i])
-			return (1);
-		i++;
-	}
-	return (0);
-}
-
-int	get_row(char *str, char *charset)
+static int	get_row(const char *s, char c)
 {
 	int	i;
 	int	row;
 
 	i = 0;
 	row = 0;
-	while (str[i])
+	while (s[i])
 	{
-		while (str[i] && is_charset(str[i], charset))
+		while (s[i] && s[i] == c)
 			i++;
-		if (str[i] && !is_charset(str[i], charset))
+		if (s[i] && s[i] != c)
 		{
 			row++;
-			while (str[i] && !is_charset(str[i], charset))
+			while (s[i] && s[i] != c)
 				i++;
 		}
 	}
 	return (row);
 }
 
-char	*w_malloc(char *str, int size)
+static char	*w_malloc(const char *s, int size)
 {
 	int		idx;
 	char	*word;
@@ -58,7 +44,7 @@ char	*w_malloc(char *str, int size)
 	idx = 0;
 	while (idx < size)
 	{
-		word[idx] = str[idx];
+		word[idx] = s[idx];
 		idx++;
 	}
 	word[idx] = '\0';
@@ -77,16 +63,16 @@ char	**ft_split(char const *s, char c)
 		return (0);
 	k = 0;
 	i = 0;
-	while (str[i])
+	while (s[i])
 	{
-		while (str[i] && is_charset(str[i], charset))
+		while (s[i] && s[i] == c)
 			i++;
-		if (str[i] && !is_charset(str[i], charset))
+		if (s[i] && s[i] != c)
 		{
 			size = 0;
-			while (str[i + size] && !is_charset(str[i + size], charset))
+			while (s[i + size] && s[i + size] != c)
 				size++;
-			result[k++] = w_malloc(&str[i], size);
+			result[k++] = w_malloc(&s[i], size);
 			i += size;
 		}
 	}

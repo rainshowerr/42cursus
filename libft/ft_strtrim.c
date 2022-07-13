@@ -12,17 +12,7 @@
 
 #include "./libft.h"
 
-size_t	ft_strlen(const char	*src)
-{
-	size_t	k;
-
-	k = 0;
-	while (src[k] != '\0')
-		k++;
-	return (k);
-}
-
-int	is_charset(char c, char const *set)
+static int	is_charset(char c, char const *set)
 {
 	size_t	i;
 
@@ -36,7 +26,7 @@ int	is_charset(char c, char const *set)
 	return (0);
 }
 
-int	ft_start_index(char const *s1, char const *set)
+static int	ft_start_index(char const *s1, char const *set)
 {
 	int	i;
 
@@ -51,7 +41,7 @@ int	ft_start_index(char const *s1, char const *set)
 	return (-1);
 }
 
-int	ft_end_index(char const *s1, char const *set)
+static int	ft_end_index(char const *s1, char const *set)
 {
 	int	i;
 
@@ -70,23 +60,13 @@ char	*ft_strtrim(char const *s1, char const *set)
 {
 	char	*str;
 	size_t	size;
-	size_t	i;
-	int		j;
 
-	if (ft_end_index(s1, set) == -1 && ft_end_index(s1, set) == -1)
-		return (0);
 	size = ft_end_index(s1, set) - ft_start_index(s1, set) + 1;
+	if (ft_start_index(s1, set) == -1 && ft_end_index(s1, set) == -1)
+		return (ft_strdup(""));
 	str = malloc(sizeof(char) * (size + 1));
 	if (!str)
 		return (0);
-	i = 0;
-	j = ft_start_index(s1, set);
-	while (i < size)
-	{
-		str[i] = s1[j];
-		i++;
-		j++;
-	}
-	str[i] = '\0';
+	ft_strlcpy(str, &s1[ft_start_index(s1, set)], size + 1);
 	return (str);
 }

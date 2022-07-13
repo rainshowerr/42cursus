@@ -12,7 +12,7 @@
 
 #include "./libft.h"
 
-void	ft_putn_fd(int n, int fd)
+static void	ft_putn_fd(int n, int fd)
 {
 	char	c;
 

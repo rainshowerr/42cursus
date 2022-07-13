@@ -10,26 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft_bonus.h"
-
-void	ft_lstadd_back(t_list **lst, t_list *new)
-{
-	while ((*lst)->next)
-		*lst = (*lst)->next;
-	(*lst)->next = new;
-}
-
-void	ft_lstclear(t_list **lst, void (*del)(void *))
-{
-	t_list	*temp;
-
-	while (*lst)
-	{
-		temp = *lst;
-		*lst = (*lst)->next;
-		free(temp);
-	}
-}
+#include "./libft.h"
 
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {

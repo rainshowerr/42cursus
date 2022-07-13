@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: seoshin <seoshin@student.42seoul.kr>       +#+  +:+       +#+         #
+#    By: seoshin <seoshin@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/11 17:24:05 by seoshin           #+#    #+#              #
-#    Updated: 2022/07/12 17:51:08 by seoshin          ###   ########.fr        #
+#    Updated: 2022/07/13 16:16:49 by seoshin          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,12 +25,12 @@ ft_putnbr_fd.c
 
 OBJS	= $(SRCS:.c=.o)
 
-INCLUDES	= libft.h
+INCLUDES	= ./libft.h
 
 NAME	= libft.a
 
 .c.o:
-	$(GCC) $(CFLAGS) -c $< -o $(<:.c=.o)
+	$(GCC) $(CFLAGS) -c $< -o $(<:.c=.o) -I INCLUDES
 
 $(NAME):	$(OBJS)
 		ar rc $(NAME) $(OBJS)

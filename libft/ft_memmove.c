@@ -20,22 +20,15 @@ void	*ft_memmove(void *dst, const void *src, size_t len)
 
 	to = (unsigned char *) dst;
 	from = (unsigned char *) src;
-	if (src < dst)
+	if (src >= dst)
+		ft_memcpy(dst, src, len);
+	else
 	{
 		i = (int)(len - 1);
 		while (0 <= i)
 		{
 			to[i] = from[i];
 			i--;
-		}
-	}
-	else
-	{
-		i = 0;
-		while (i < (int)len)
-		{
-			to[i] = from[i];
-			i++;
 		}
 	}
 	return ((void *)to);

@@ -1,20 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstadd_back.c                                   :+:      :+:    :+:   */
+/*   ft_lstclear.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: seoshin <seoshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/12 15:34:22 by seoshin           #+#    #+#             */
-/*   Updated: 2022/07/12 15:34:22 by seoshin          ###   ########.fr       */
+/*   Created: 2022/07/12 15:45:43 by seoshin           #+#    #+#             */
+/*   Updated: 2022/07/12 15:45:43 by seoshin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft_bonus.h"
+#include "./libft.h"
 
-void	ft_lstadd_back(t_list **lst, t_list *new)
+void	ft_lstclear(t_list **lst, void (*del)(void *))
 {
-	while ((*lst)->next)
+	t_list	*temp;
+
+	while (*lst)
+	{
+		temp = *lst;
 		*lst = (*lst)->next;
-	(*lst)->next = new;
+		free(temp);
+	}
 }

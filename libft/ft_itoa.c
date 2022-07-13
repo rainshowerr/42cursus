@@ -12,7 +12,7 @@
 
 #include "./libft.h"
 
-size_t	ft_space(int n)
+static size_t	ft_space(int n)
 {
 	size_t	space;
 

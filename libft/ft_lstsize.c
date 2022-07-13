@@ -1,20 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstlast.c                                       :+:      :+:    :+:   */
+/*   ft_lstsize.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: seoshin <seoshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/12 15:32:36 by seoshin           #+#    #+#             */
-/*   Updated: 2022/07/12 15:32:36 by seoshin          ###   ########.fr       */
+/*   Created: 2022/07/12 15:31:07 by seoshin           #+#    #+#             */
+/*   Updated: 2022/07/12 15:31:07 by seoshin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft_bonus.h"
+#include "./libft.h"
 
-t_list	*ft_lstlast(t_list *lst)
+int	ft_lstsize(t_list *lst)
 {
-	while (lst->next)
+	int	cnt;
+
+	cnt = 0;
+	while (lst)
+	{
 		lst = lst->next;
-	return (lst);
+		cnt++;
+	}
+	return (cnt);
 }

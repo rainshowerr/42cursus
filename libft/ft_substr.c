@@ -17,15 +17,18 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	char	*str;
 	size_t	i;
 
+	if (start >= (unsigned int)ft_strlen(s))
+		return (ft_strdup(""));
 	str = (char *)malloc(sizeof(char) * (len + 1));
 	if (!str)
 		return (0);
 	i = 0;
-	while (i < len)
+	while (s[start] && i < len)
 	{
 		str[i] = s[start];
 		i++;
 		start++;
 	}
+	str[i] = '\0';
 	return (str);
 }
