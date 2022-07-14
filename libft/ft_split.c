@@ -12,7 +12,7 @@
 
 #include "./libft.h"
 
-static int	get_row(const char *s, char c)
+static int	ft_get_row(const char *s, char c)
 {
 	int	i;
 	int	row;
@@ -33,7 +33,17 @@ static int	get_row(const char *s, char c)
 	return (row);
 }
 
-static char	*w_malloc(const char *s, int size)
+static int	ft_size(char const *s, char c, int s_idx)
+{
+	int	size;
+
+	size = 0;
+	while (s[s_idx + size] && s[s_idx + size] != c)
+		size++;
+	return (size);
+}
+
+static char	*ft_malloc(const char *s, int size)
 {
 	int		idx;
 	char	*word;
@@ -51,14 +61,25 @@ static char	*w_malloc(const char *s, int size)
 	return (word);
 }
 
+void	ft_free(char **arr)
+{
+	int	i;
+
+	i = 0;
+	while (arr[i])
+		free(arr[i]);
+	free(arr);
+}
+
 char	**ft_split(char const *s, char c)
 {
 	int		i;
 	int		k;
-	int		size;
 	char	**result;
 
-	result = (char **)malloc(sizeof(char *) * (get_row(s, c) + 1));
+	if (!s)
+		return (0);
+	result = (char **)malloc(sizeof(char *) * (ft_get_row(s, c) + 1));
 	if (!result)
 		return (0);
 	k = 0;
@@ -69,11 +90,10 @@ char	**ft_split(char const *s, char c)
 			i++;
 		if (s[i] && s[i] != c)
 		{
-			size = 0;
-			while (s[i + size] && s[i + size] != c)
-				size++;
-			result[k++] = w_malloc(&s[i], size);
-			i += size;
+			result[k] = ft_malloc(&s[i], ft_size(s, c, i));
+			if (!result[k++])
+				ft_free(result);
+			i += ft_size(s, c, i);
 		}
 	}
 	result[k] = 0;
