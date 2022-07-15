@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: seoshin <seoshin@student.42.fr>            +#+  +:+       +#+         #
+#    By: seoshin <seoshin@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/11 17:24:05 by seoshin           #+#    #+#              #
-#    Updated: 2022/07/15 18:15:38 by seoshin          ###   ########.fr        #
+#    Updated: 2022/07/15 21:08:09 by seoshin          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,7 @@ ft_strjoin.c ft_strtrim.c ft_split.c ft_itoa.c ft_strmapi.c \
 ft_striteri.c ft_putchar_fd.c ft_putstr_fd.c ft_putendl_fd.c \
 ft_putnbr_fd.c
 
-SRCS_BN		=	ft_lstadd_back.c ft_lstadd_front.c ft_lstclear.c ft_lstdelone.c\
+SRCS_BN		=	ft_lstadd_back.c ft_lstadd_front.c ft_lstclear.c ft_lstdelone.c \
 				ft_lstiter.c ft_lstlast.c ft_lstmap.c ft_lstnew.c ft_lstsize.c
 
 OBJS		= 	$(SRCS:.c=.o)
@@ -34,16 +34,22 @@ INCLUDES	= 	./libft.h
 
 NAME		=	 libft.a
 
+ifdef WITH_BONUS
+	OBJECTS = $(OBJS) $(OBJS_BN)
+else
+	OBJECTS = $(OBJS)
+endif
+
 .c.o		:
 				$(GCC) $(CFLAGS) -c $< -o $(<:.c=.o) -I INCLUDES
 
-$(NAME) 	:	$(OBJS)
-				ar rcs $(NAME) $(OBJS)
-
-bonus   	:   $(OBJS) $(OBJS_BN)
-				ar rcs $(NAME) $(OBJS) $(OBJS_BN)
+$(NAME) 	:	$(OBJECTS)
+				ar rcs $(NAME) $(OBJECTS)
 
 all			:	$(NAME)
+
+bonus		:
+				make WITH_BONUS=1 all
 
 clean		:
 				rm -f $(OBJS) $(OBJS_BN)
