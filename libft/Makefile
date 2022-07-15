@@ -6,7 +6,7 @@
 #    By: seoshin <seoshin@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/11 17:24:05 by seoshin           #+#    #+#              #
-#    Updated: 2022/07/14 15:03:23 by seoshin          ###   ########.fr        #
+#    Updated: 2022/07/15 18:15:38 by seoshin          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -53,4 +53,4 @@ fclean		:	clean
 
 re			:	fclean all
 
-.PHONY		:	all clean fclean re
+.PHONY		:	all clean fclean re bonus

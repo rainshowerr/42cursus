@@ -10,11 +10,23 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <limits.h>
+
+int	ft_check(unsigned long long k, int sign)
+{
+	if (k > LLONG_MAX && sign > 0)
+		return (-1);
+	else if (k > LLONG_MAX && sign < 0)
+		return (0);
+	else
+		return (sign * (int)k);
+}
+
 int	ft_atoi(const char *str)
 {
-	int	idx;
-	int	sign;
-	int	k;
+	int					idx;
+	int					sign;
+	unsigned long long	k;
 
 	idx = 0;
 	sign = 1;
@@ -34,5 +46,5 @@ int	ft_atoi(const char *str)
 			k *= 10;
 		idx++;
 	}
-	return (sign * k);
+	return (ft_check(k, sign));
 }

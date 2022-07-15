@@ -61,12 +61,12 @@ static char	*ft_malloc(const char *s, int size)
 	return (word);
 }
 
-void	ft_free(char **arr)
+void	ft_free(char **arr, int k)
 {
 	int	i;
 
 	i = 0;
-	while (arr[i])
+	while (i < k)
 		free(arr[i]);
 	free(arr);
 }
@@ -77,8 +77,6 @@ char	**ft_split(char const *s, char c)
 	int		k;
 	char	**result;
 
-	if (!s)
-		return (0);
 	result = (char **)malloc(sizeof(char *) * (ft_get_row(s, c) + 1));
 	if (!result)
 		return (0);
@@ -91,9 +89,10 @@ char	**ft_split(char const *s, char c)
 		if (s[i] && s[i] != c)
 		{
 			result[k] = ft_malloc(&s[i], ft_size(s, c, i));
-			if (!result[k++])
-				ft_free(result);
+			if (!result[k])
+				ft_free(result, k);
 			i += ft_size(s, c, i);
+			k++;
 		}
 	}
 	result[k] = 0;
