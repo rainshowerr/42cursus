@@ -12,7 +12,7 @@
 
 #include <limits.h>
 
-int	ft_check(unsigned long long k, int sign)
+static int	ft_check(unsigned long long k, int sign)
 {
 	if (k > LLONG_MAX && sign > 0)
 		return (-1);

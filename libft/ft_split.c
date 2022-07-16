@@ -61,7 +61,7 @@ static char	*ft_malloc(const char *s, int size)
 	return (word);
 }
 
-void	ft_free(char **arr, int k)
+static void	ft_free(char **arr, int k)
 {
 	int	i;
 
