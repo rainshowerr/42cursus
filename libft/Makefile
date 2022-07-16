@@ -30,8 +30,6 @@ OBJS		= 	$(SRCS:.c=.o)
 
 OBJS_BN		=	$(SRCS_BN:.c=.o)
 
-INCLUDES	= 	./libft.h
-
 NAME		=	 libft.a
 
 ifdef WITH_BONUS
@@ -40,13 +38,13 @@ else
 	OBJECTS = $(OBJS)
 endif
 
-.c.o		:
-				$(GCC) $(CFLAGS) -c $< -o $(<:.c=.o) -I INCLUDES
+all			:	$(NAME)
 
 $(NAME) 	:	$(OBJECTS)
 				ar rcs $(NAME) $(OBJECTS)
 
-all			:	$(NAME)
+.c.o		:
+				$(GCC) $(CFLAGS) -c $< -o $@
 
 bonus		:
 				make WITH_BONUS=1 all
