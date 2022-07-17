@@ -10,7 +10,7 @@
 #                                                                              #
 # **************************************************************************** #
 
-GCC			=	gcc
+CC			=	cc
 
 CFLAGS		=	-Wall -Wextra -Werror
 
@@ -44,7 +44,7 @@ $(NAME) 	:	$(OBJECTS)
 				ar rcs $(NAME) $(OBJECTS)
 
 %.o		:		%.c
-				$(GCC) $(CFLAGS) -c $< -o $@
+				$(CC) $(CFLAGS) -c $< -o $@
 
 bonus		:
 				make WITH_BONUS=1 all
