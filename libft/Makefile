@@ -6,7 +6,7 @@
 #    By: seoshin <seoshin@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/11 17:24:05 by seoshin           #+#    #+#              #
-#    Updated: 2022/07/15 21:08:09 by seoshin          ###   ########.fr        #
+#    Updated: 2022/07/17 14:38:47 by seoshin          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,7 +43,7 @@ all			:	$(NAME)
 $(NAME) 	:	$(OBJECTS)
 				ar rcs $(NAME) $(OBJECTS)
 
-.c.o		:
+%.o		:		%.c
 				$(GCC) $(CFLAGS) -c $< -o $@
 
 bonus		:
