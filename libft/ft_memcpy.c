@@ -20,6 +20,8 @@ void	*ft_memcpy(void *dst, const void *src, size_t n)
 
 	to = (unsigned char *)dst;
 	from = (unsigned char *)src;
+	if (to == 0 && from == 0)
+		return (0);
 	i = 0;
 	while (i < n)
 	{
