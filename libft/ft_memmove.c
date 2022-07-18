@@ -46,7 +46,6 @@ void	*ft_memmove(void *dst, const void *src, size_t len)
 	else
 	{
 		i = (int)(len - 1);
-		printf("%d", i);
 		while (0 <= i)
 		{
 			to[i] = from[i];
