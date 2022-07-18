@@ -67,8 +67,13 @@ static void	ft_free(char **arr, int k)
 
 	i = 0;
 	while (i < k)
+	{
 		free(arr[i]);
+		arr[i] = 0;
+		i++;
+	}
 	free(arr);
+	arr = 0;
 }
 
 char	**ft_split(char const *s, char c)

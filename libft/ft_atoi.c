@@ -6,17 +6,18 @@
 /*   By: seoshin <seoshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/10 20:43:47 by seoshin           #+#    #+#             */
-/*   Updated: 2022/07/10 20:43:47 by seoshin          ###   ########.fr       */
+/*   Updated: 2022/07/18 16:45:27 by seoshin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <limits.h>
-
 static int	ft_check(unsigned long long k, int sign)
 {
-	if (k > LLONG_MAX && sign > 0)
+	unsigned long long	max;
+
+	max = 9223372036854775807;
+	if (k > max && sign > 0)
 		return (-1);
-	else if (k > LLONG_MAX && sign < 0)
+	else if (k > max && sign < 0)
 		return (0);
 	else
 		return (sign * (int)k);
