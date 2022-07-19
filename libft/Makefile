@@ -41,19 +41,19 @@ endif
 all		:	$(NAME)
 
 $(NAME) 	:	$(OBJECTS)
-				ar rcs $(NAME) $(OBJECTS)
+			ar rcs $(NAME) $(OBJECTS)
 
-%.o		:		%.c
-				$(CC) $(CFLAGS) -c $< -o $@
+%.o		:	%.c
+			$(CC) $(CFLAGS) -c $< -o $@
 
 bonus		:
-				make WITH_BONUS=1 all
+			make WITH_BONUS=1 all
 
 clean		:
-				rm -f $(OBJS) $(OBJS_BN)
+			rm -f $(OBJS) $(OBJS_BN)
 
 fclean		:	clean
-				rm -f $(NAME)
+			rm -f $(NAME)
 
 re		:	fclean all
 
