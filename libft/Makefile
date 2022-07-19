@@ -10,7 +10,7 @@
 #                                                                              #
 # **************************************************************************** #
 
-CC			=	cc
+CC		=	cc
 
 CFLAGS		=	-Wall -Wextra -Werror
 
@@ -38,7 +38,7 @@ else
 	OBJECTS = $(OBJS)
 endif
 
-all			:	$(NAME)
+all		:	$(NAME)
 
 $(NAME) 	:	$(OBJECTS)
 				ar rcs $(NAME) $(OBJECTS)
@@ -55,6 +55,6 @@ clean		:
 fclean		:	clean
 				rm -f $(NAME)
 
-re			:	fclean all
+re		:	fclean all
 
 .PHONY		:	all clean fclean re bonus
