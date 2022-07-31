@@ -6,7 +6,7 @@
 /*   By: seoshin <seoshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 18:36:58 by seoshin           #+#    #+#             */
-/*   Updated: 2022/07/31 18:24:53 by seoshin          ###   ########.fr       */
+/*   Updated: 2022/07/31 19:22:25 by seoshin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,20 +71,20 @@ char	*ft_strdup(const char *src)
 
 char	*ft_strchr(const char *s, int c)
 {
-	int		idx;
+	size_t	i;
+	size_t	len;
 	char	cc;
-	int		i;
 
 	if (!s)
 		return (0);
 	cc = (char)c;
-	idx = 0;
-	i = (int)ft_strlen(s);
-	while (idx <= i)
+	i = 0;
+	len = ft_strlen(s);
+	while (i <= len)
 	{
-		if (s[idx] == cc)
-			return ((char *)&s[idx]);
-		idx++;
+		if (s[i] == cc)
+			return ((char *)&s[i]);
+		i++;
 	}
 	return (0);
 }

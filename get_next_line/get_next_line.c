@@ -6,17 +6,17 @@
 /*   By: seoshin <seoshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/26 17:38:25 by seoshin           #+#    #+#             */
-/*   Updated: 2022/07/31 18:20:29 by seoshin          ###   ########.fr       */
+/*   Updated: 2022/07/31 19:26:49 by seoshin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-static int	buff_read(int fd, char *buff)
+static ssize_t	buff_read(int fd, char *buff)
 {
-	int		read_size;
+	ssize_t	read_size;
 
-	read_size = (int)read(fd, buff, BUFFER_SIZE);
+	read_size = read(fd, buff, BUFFER_SIZE);
 	if (read_size < 0)
 	{
 		free(buff);
@@ -49,8 +49,8 @@ static char	*meet_eof(char **backup, char *buff)
 
 static char	*get_front(char	*backup)
 {
-	size_t	i;
-	size_t	len;
+	int		i;
+	int		len;
 	char	*str;
 
 	i = 0;
@@ -93,7 +93,7 @@ char	*get_next_line(int fd)
 {
 	static char	*backup;
 	char		*buff;
-	int			read_size;
+	ssize_t		read_size;
 
 	if (BUFFER_SIZE <= 0 || fd < 0)
 		return (0);
