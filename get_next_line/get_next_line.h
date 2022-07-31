@@ -15,7 +15,6 @@
 
 # include <unistd.h>
 # include <stdlib.h>
-# include <stdio.h>
 
 size_t	ft_strlen(const char *src);
 char	*ft_strjoin(char *s1, char *s2);
