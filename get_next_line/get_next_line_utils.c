@@ -6,7 +6,7 @@
 /*   By: seoshin <seoshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 18:36:58 by seoshin           #+#    #+#             */
-/*   Updated: 2022/07/30 22:01:17 by seoshin          ###   ########.fr       */
+/*   Updated: 2022/07/31 18:24:53 by seoshin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,17 +39,15 @@ char	*ft_strjoin(char *s1, char *s2)
 	str = (char *)malloc(sizeof(char) * (s1_len + s2_len + 1));
 	if (!str)
 		return (0);
-	i = 0;
-	while (i < s1_len)
-	{
+	i = -1;
+	while (++i < s1_len)
 		str[i] = s1[i];
-		i++;
-	}
 	j = 0;
 	while (j < s2_len)
 		str[i++] = s2[j++];
 	str[i] = '\0';
 	free(s1);
+	s1 = 0;
 	return (str);
 }
 

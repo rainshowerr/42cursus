@@ -6,7 +6,7 @@
 /*   By: seoshin <seoshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/26 17:38:25 by seoshin           #+#    #+#             */
-/*   Updated: 2022/07/31 16:56:21 by seoshin          ###   ########.fr       */
+/*   Updated: 2022/07/31 18:20:29 by seoshin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ static char	*meet_eof(char **backup, char *buff)
 	char	*line;
 
 	free(buff);
+	buff = 0;
 	if (ft_strlen(*backup) == 0)
 	{
 		free(*backup);
