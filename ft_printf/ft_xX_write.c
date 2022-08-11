@@ -14,9 +14,9 @@
 
 int	ft_xx_write(int c, va_list ap)
 {
-	unsigned long long	tmp;
+	unsigned int	tmp;
 
-	tmp = (unsigned long long)va_arg(ap, int);
+	tmp = (unsigned int)va_arg(ap, int);
 	if (c == 'x')
 		return (ft_hexadec(tmp, "0123456789abcdef"));
 	if (c == 'X')
