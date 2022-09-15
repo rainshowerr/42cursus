@@ -14,18 +14,17 @@ CC			=	cc
 
 CFLAGS		=	-Wall -Wextra -Werror
 
-SRCS		=	
+SRCS		=	main.c
 
 OBJS		=	$(SRCS:.c=.o)
 
-NAME		=	 
+NAME		=	winter
 
-$(NAME) 	:	$(OBJS)
-				ar rcs $(NAME) $(OBJS)
+$(NAME) 	:	
+				cc -L./mlx -lmlx -framework OpenGL -framework AppKit main.c -o winter
+				./winter
 
-all			:
-				gcc -L./mlx -lmlx -framework OpenGL -framework AppKit main.c
-				./a.out
+all			:	$(NAME)
 
 %.o			:	%.c
 				$(CC) $(CFLAGS) -Imlx -c $< -o $@
