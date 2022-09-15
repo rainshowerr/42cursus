@@ -6,7 +6,7 @@
 #    By: seoshin <seoshin@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/13 17:05:34 by seoshin           #+#    #+#              #
-#    Updated: 2022/09/13 20:50:22 by seoshin          ###   ########.fr        #
+#    Updated: 2022/09/15 16:43:59 by seoshin          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,7 @@ OBJS		=	$(SRCS:.c=.o)
 NAME		=	winter
 
 $(NAME) 	:	
-				cc -L./mlx -lmlx -framework OpenGL -framework AppKit main.c -o winter
+				gcc -L./mlx -lmlx -framework OpenGL -framework AppKit main.c -o winter
 				./winter
 
 all			:	$(NAME)
