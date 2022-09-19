@@ -5,34 +5,60 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: seoshin <seoshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/14 19:31:22 by seoshin           #+#    #+#             */
-/*   Updated: 2022/09/15 16:43:40 by seoshin          ###   ########.fr       */
+/*   Created: 2022/09/16 17:05:10 by seoshin           #+#    #+#             */
+/*   Updated: 2022/09/19 20:57:01 by seoshin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./mlx/mlx.h"
+#include "./get_next_lne/get_next_line.h"
+
+#define ESC 53
+#define W 13
+#define A 0
+#define S 1
+#define D 2
+
+typedef struct s_vars {
+	void	*mlx;
+	void	*win;
+}	t_vars;
+
+int key_hook(int keycode, t_vars *vars)
+{
+	if (keycode == ESC)
+	{
+		mlx_destroy_window(vars->mlx, vars->wim);
+		exit(0);
+	}
+	else if (keycode == W)
+	{
+
+	}
+	else if (keycode == A)
+	{
+
+	}
+	else if (keycode == S)
+	{
+
+	}
+	else if (keycode == D)
+	{
+		
+	}
+	return (0);
+}
 
 int main(void)
 {
-	void	*mlx;
-	void	*win;
-	void	*img_snow;
-	void	*img_tree;
-	void	*img_slime;
-	int		img_width;
-	int		img_height;
+	t_vars vars;
 
-	mlx = mlx_init();
-	win = mlx_new_window(mlx, 500, 500, "winter");
-	img_snow = mlx_xpm_file_to_image(mlx, "./images/snow.xpm", &img_width, &img_height);
-	img_tree = mlx_xpm_file_to_image(mlx, "./images/tree.xpm", &img_width, &img_height);
-	img_slime = mlx_xpm_file_to_image(mlx, "./images/slime.xpm", &img_width, &img_height);
-	mlx_put_image_to_window(mlx, win, img_snow, 0, 0);
-	mlx_put_image_to_window(mlx, win, img_tree, 0, 0);
-	mlx_put_image_to_window(mlx, win, img_snow, 0, 64);
-	mlx_put_image_to_window(mlx, win, img_snow, 64, 0);
-	mlx_put_image_to_window(mlx, win, img_snow, 64, 64);
-	mlx_put_image_to_window(mlx, win, img_slime, 64, 64);
+	vars.mlx = mlx_init();
+	vars.win = mlx_new_window(vars.mlx, 500, 500, "winter");
+
+	mlx_key_hook(vars.win, key_hook, &vars);
+
 	mlx_loop(mlx);
 	return (0);
 }
