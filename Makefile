@@ -6,23 +6,23 @@
 #    By: seoshin <seoshin@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/13 17:05:34 by seoshin           #+#    #+#              #
-#    Updated: 2022/09/15 16:43:59 by seoshin          ###   ########.fr        #
+#    Updated: 2022/09/24 22:39:41 by seoshin          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC			=	cc
 
-CFLAGS		=	-Wall -Wextra -Werror
+CFLAGS		=	-L./mlx -lmlx -framework OpenGL -framework AppKit
 
-SRCS		=	main.c
+SRCS		=	main.c get_next_line/get_next_line.c get_next_line/get_next_line_utils.c
 
 OBJS		=	$(SRCS:.c=.o)
 
-NAME		=	winter
+NAME		=	so_long
 
-$(NAME) 	:	
-				gcc -L./mlx -lmlx -framework OpenGL -framework AppKit main.c -o winter
-				./winter
+$(NAME) 	:	$(OBJS)
+				$(CC) $(CFLAGS) $(SRCS) -o so_long
+				./so_long
 
 all			:	$(NAME)
 
