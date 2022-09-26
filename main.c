@@ -6,7 +6,7 @@
 /*   By: seoshin <seoshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/16 17:05:10 by seoshin           #+#    #+#             */
-/*   Updated: 2022/09/24 22:39:39 by seoshin          ###   ########.fr       */
+/*   Updated: 2022/09/26 22:40:22 by seoshin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,40 +47,25 @@ void init_map_info(t_map_info	*map_info)
 	map_info->start = 0;
 }
 
+// 지도가 몇줄인지 체크하면서 직사각형 모양이 아닌지 확인!
 void	map_count_row(t_map_info	*map_info)
 {
-	int fd;
-
-	fd = open("./map.ber", O_RDONLY);
-	while(get_next_line(fd))
-		map_info->row++;
-	close(fd);
-}
-
-// 지도가 직사각형 모양인지  체크
-int map_square_check(t_map_info	*map_info)
-{
-	int		fd;
-	int		row_idx;
+	int 	fd;
 	char	*line;
 
 	fd = open("./map.ber", O_RDONLY);
-	map_count_row(map_info);
-	row_idx = 0;
-	while(row_idx < map_info->row)
+	line = get_next_line(fd);
+	map_info->col = ft_strlen(line);
+	while(line)
 	{
+		map_info->row++;
 		line = get_next_line(fd);
-		if (row_idx == 0)
-			map_info->col= ft_strlen(line);
-		else
+		if (map_info->col != ft_strlen(line))
 		{
-			if (map_info->col != ft_strlen(line))
-				destroy_map();
+			close(fd);
+			destroy_map();
 		}
-		row_idx++;
 	}
-	close(fd);
-	return (1);
 }
 
 char	**read_map(t_map_info *map_info)
@@ -90,7 +75,7 @@ char	**read_map(t_map_info *map_info)
 	char	**map;
 	int		idx;
 
-	map_square_check(map_info);
+	map_count_row(map_info);
 	fd = open("./map.ber", O_RDONLY);
 	map = (char **)malloc(sizeof(char *) * map_info->row);
 	idx = 0;
@@ -101,6 +86,7 @@ char	**read_map(t_map_info *map_info)
 		strcpy(map[idx], line);
 		idx++;
 	}
+	close(fd);
 	return (map);
 }
 
