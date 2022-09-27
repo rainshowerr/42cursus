@@ -6,7 +6,7 @@
 /*   By: seoshin <seoshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/24 17:36:38 by seoshin           #+#    #+#             */
-/*   Updated: 2022/09/24 22:39:44 by seoshin          ###   ########.fr       */
+/*   Updated: 2022/09/27 21:11:03 by seoshin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,14 @@ typedef struct s_vars {
 	void	*mlx;
 	void	*win;
 }t_vars;
+
+typedef struct s_images {
+	void	*snow;
+	void	*tree;
+	void	*slime;
+	int		img_width;
+	int		img_height;
+}t_images;
 
 char	*strcpy(char *dst, const char *src);
 
