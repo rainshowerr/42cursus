@@ -6,7 +6,7 @@
 /*   By: seoshin <seoshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/24 17:36:38 by seoshin           #+#    #+#             */
-/*   Updated: 2022/09/27 21:11:03 by seoshin          ###   ########.fr       */
+/*   Updated: 2022/10/10 22:29:33 by seoshin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,10 +44,21 @@ typedef struct s_images {
 	void	*snow;
 	void	*tree;
 	void	*slime;
-	int		img_width;
-	int		img_height;
+	void	*exit;
+	int		width;
+	int		height;
 }t_images;
 
 char	*strcpy(char *dst, const char *src);
+int key_hook(int keycode, t_vars *vars, t_param *param);
+void	destroy_map();
+void init_map_info(t_map_info	*map_info);
+void	map_square_check(t_map_info	*map_info);
+void	check_char(t_map_info *map_info, char c);
+void	map_error_check(t_map_info *map_info, char	**map);
+char	**read_map(t_map_info *map_info, char *fname);
+void	show_map(char **map, t_map_info *map_info);
+void	set_image(t_vars* vars, t_images* images);
+void print_map(t_vars* vars, t_images* images, t_map_info *map_info, char **map);
 
 #endif

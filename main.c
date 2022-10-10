@@ -6,7 +6,7 @@
 /*   By: seoshin <seoshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/16 17:05:10 by seoshin           #+#    #+#             */
-/*   Updated: 2022/09/27 22:35:48 by seoshin          ###   ########.fr       */
+/*   Updated: 2022/10/10 22:30:25 by seoshin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 #include "./so_long.h"
 #include <stdio.h>
 
-/*
 int key_hook(int keycode, t_vars *vars, t_param *param)
 {
 	if (keycode == ESC)
@@ -32,7 +31,6 @@ int key_hook(int keycode, t_vars *vars, t_param *param)
 		param->x++;
 	return (0);
 }
-*/
 
 void	destroy_map()
 {
@@ -70,12 +68,12 @@ void	map_square_check(t_map_info	*map_info)
 		line = get_next_line(fd);
 		if (line)
 		{
-			if (line[ft_strlen(line) - 1] == '\n' && ft_strlen(line) != map_info->col + 1)
+			if (line[ft_strlen(line) - 1] == '\n' && (int)ft_strlen(line) != map_info->col + 1)
 			{
 				free(line);
 				destroy_map();
 			}
-			else if (line[ft_strlen(line) - 1] != '\n' && ft_strlen(line) != map_info->col)
+			else if (line[ft_strlen(line) - 1] != '\n' && (int)ft_strlen(line) != map_info->col)
 			{
 				free(line);
 				destroy_map();
@@ -88,14 +86,13 @@ void	map_square_check(t_map_info	*map_info)
 
 void	check_char(t_map_info *map_info, char c)
 {
-	if (c == '0' || c == '1');
-	else if (c ==  'C')
+	if (c ==  'C')
 		map_info->collectible++;
 	else if (c == 'E')
 		map_info->exit++;
 	else if (c == 'P')
 		map_info->start++;
-	else
+	else if (c != '0' && c != '1')
 		destroy_map();
 }
 
@@ -122,7 +119,7 @@ void	map_error_check(t_map_info *map_info, char	**map)
 		destroy_map();
 }
 
-char	**read_map(t_map_info *map_info)
+char	**read_map(t_map_info *map_info, char *fname)
 {
 	int		fd;
 	char	*line;
@@ -130,7 +127,7 @@ char	**read_map(t_map_info *map_info)
 	int		idx;
 
 	map_square_check(map_info);
-	fd = open("./map.ber", O_RDONLY);
+	fd = open(fname, O_RDONLY);
 	map = (char **)malloc(sizeof(char *) * map_info->row);
 	idx = 0;
 	while(idx < map_info->row)
@@ -156,12 +153,43 @@ void	show_map(char **map, t_map_info *map_info)
 	}
 }
 
-void map_init(t_vars* vars, t_images* images, char **map)
+void	set_image(t_vars* vars, t_images* images)
 {
-
+	images->snow = mlx_xpm_file_to_image(vars->mlx, "./images/snow.xpm", &images->width, &images->height);
+	images->tree = mlx_xpm_file_to_image(vars->mlx, "./images/tree.xpm", &images->width, &images->height);
+	images->slime = mlx_xpm_file_to_image(vars->mlx, "./images/slime.xpm", &images->width, &images->height);
+	images->exit = mlx_xpm_file_to_image(vars->mlx, "./images/exit.xpm", &images->width, &images->height);
 }
 
-int main(void)
+void print_map(t_vars* vars, t_images* images, t_map_info *map_info, char **map)
+{
+	int	i;
+	int	j;
+
+	set_image(vars, images);
+	i = 0;
+	while(i < map_info->row)
+	{
+		j = 0;
+		while(j < map_info->col)
+		{
+			mlx_put_image_to_window(vars->mlx, vars->win, images->snow, 64 * j, 64 * i);
+			if (map[i][j] == '1')
+				mlx_put_image_to_window(vars->mlx, vars->win, images->tree, 64 * j, 64 * i);
+			else if (map[i][j] == 'E')
+				mlx_put_image_to_window(vars->mlx, vars->win, images->exit, 64 * j, 64 * i);
+			/*
+			else if (map[i][j] == 'C');
+			*/
+			else if (map[i][j] == 'P')
+				mlx_put_image_to_window(vars->mlx, vars->win, images->slime, 64 * j, 64 * i);
+			j++;
+		}
+		i++;
+	}
+}
+
+int main(int ac, char **av)
 {
 	t_vars		vars;
 	t_map_info	map_info;
@@ -169,19 +197,14 @@ int main(void)
 	char		**map;
 
 	init_map_info(&map_info);
-	map = read_map(&map_info);
+	ac = 0;
+	map = read_map(&map_info, av[1]);
 	map_error_check(&map_info, map);
 	show_map(map, &map_info);
-	
-	/*
+
 	vars.mlx = mlx_init();
-	vars.win = mlx_new_window(vars.mlx, 500, 500, "so_long");
-
-	map_init(&vars, &images, map);
-
+	vars.win = mlx_new_window(vars.mlx, 64 * map_info.col, 64 * map_info.row, "so_long");
 	mlx_key_hook(vars.win, key_hook, &vars);
-
+	print_map(&vars, &images, &map_info, map);
 	mlx_loop(vars.mlx);
-	return (0);
-	*/
 }
