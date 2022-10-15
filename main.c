@@ -6,7 +6,7 @@
 /*   By: seoshin <seoshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/16 17:05:10 by seoshin           #+#    #+#             */
-/*   Updated: 2022/10/10 22:30:25 by seoshin          ###   ########.fr       */
+/*   Updated: 2022/10/12 20:41:26 by seoshin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,10 @@
 #include "./so_long.h"
 #include <stdio.h>
 
-int key_hook(int keycode, t_vars *vars, t_param *param)
+int key_hook(int keycode, t_param *param)
 {
 	if (keycode == ESC)
-	{
-		mlx_destroy_window(vars->mlx, vars->win);
 		exit(0);
-	}
 	else if (keycode == W)
 		param->y--;
 	else if (keycode == A)
@@ -29,6 +26,7 @@ int key_hook(int keycode, t_vars *vars, t_param *param)
 		param->y++;
 	else if (keycode == D)
 		param->x++;
+	printf("%d %d\n", param->x, param->y);
 	return (0);
 }
 
@@ -38,7 +36,30 @@ void	destroy_map()
 	exit(0);
 }
 
-void init_map_info(t_map_info	*map_info)
+void	init_param(t_map_info map_info, char **map, t_param *param)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while(i < map_info.row)
+	{
+		j = 0;
+		while(j < map_info.col)
+		{
+			if (map[i][j] == 'P')
+			{
+				param->x = i;
+				param->y = j;
+				return;
+			}
+			j++;
+		}
+		i++;
+	}
+}
+
+void init_map_info(t_map_info *map_info)
 {
 	map_info->row = 0;
 	map_info->col = 0;
@@ -194,17 +215,18 @@ int main(int ac, char **av)
 	t_vars		vars;
 	t_map_info	map_info;
 	t_images	images;
+	t_param		param;
 	char		**map;
 
 	init_map_info(&map_info);
 	ac = 0;
 	map = read_map(&map_info, av[1]);
 	map_error_check(&map_info, map);
-	show_map(map, &map_info);
+	init_param(map_info, map, &param);
 
 	vars.mlx = mlx_init();
 	vars.win = mlx_new_window(vars.mlx, 64 * map_info.col, 64 * map_info.row, "so_long");
-	mlx_key_hook(vars.win, key_hook, &vars);
+	mlx_hook(vars.win, X_EVENT_KEY_RELEASE, 0, &key_hook, &param);
 	print_map(&vars, &images, &map_info, map);
 	mlx_loop(vars.mlx);
 }
