@@ -6,7 +6,7 @@
 /*   By: seoshin <seoshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/24 17:36:38 by seoshin           #+#    #+#             */
-/*   Updated: 2022/10/12 20:41:22 by seoshin          ###   ########.fr       */
+/*   Updated: 2022/10/18 20:48:50 by seoshin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,44 +24,52 @@
 # define S 1
 # define D 2
 
-typedef struct s_map_info{
-	int	row;
-	int col;
-	int exit;
-	int	collectible;
-	int	start;
-}t_map_info;
-
 typedef struct s_param {
 	int	x;
 	int	y;
 }t_param;
 
-typedef struct s_vars {
-	void	*mlx;
-	void	*win;
-}t_vars;
-
 typedef struct s_images {
 	void	*snow;
 	void	*tree;
 	void	*slime;
+	void	*collectible;
+	void	*enemy;
 	void	*exit;
 	int		width;
 	int		height;
 }t_images;
 
+typedef struct s_game{
+	void		*mlx;
+	void		*win;
+	char		**map;
+	int			row;
+	int			col;
+	int			exit;
+	int			get;
+	int			collectible;
+	int			start;
+	int			move;
+	t_param		param;
+	t_images	images;
+}t_game;
+
 char	*strcpy(char *dst, const char *src);
-int		key_hook(int keycode, t_param *param);
+int		key_hook(int keycode, t_game *game);
 void	destroy_map();
-void	init_map_info(t_map_info *map_info);
-void	init_param(t_map_info	map_info, char **map, t_param *param);
-void	map_square_check(t_map_info	*map_info);
-void	check_char(t_map_info *map_info, char c);
-void	map_error_check(t_map_info *map_info, char	**map);
-char	**read_map(t_map_info *map_info, char *fname);
-void	show_map(char **map, t_map_info *map_info);
-void	set_image(t_vars* vars, t_images* images);
-void print_map(t_vars* vars, t_images* images, t_map_info *map_info, char **map);
+void	init_game(t_game *game);
+void	init_param(t_game *game);
+void	map_square_check(t_game	*game);
+void	check_char(t_game *game, char c);
+void	map_error_check(t_game *game);
+char	**read_map(t_game *game, char *fname);
+void	show_map(char **map, t_game *game);
+void	set_image(t_game *game);
+void	print_map(t_game *game);
+void	w_move(t_game *game);
+void	a_move(t_game *game);
+void	s_move(t_game *game);
+void	d_move(t_game *game);
 
 #endif
