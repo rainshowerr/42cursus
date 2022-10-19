@@ -1,27 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   util_funcs.c                                       :+:      :+:    :+:   */
+/*   ft_p_write.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: seoshin <seoshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/24 21:44:11 by seoshin           #+#    #+#             */
-/*   Updated: 2022/09/24 22:39:45 by seoshin          ###   ########.fr       */
+/*   Created: 2022/08/07 16:41:27 by seoshin           #+#    #+#             */
+/*   Updated: 2022/08/07 20:13:53 by seoshin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./so_long.h"
+#include "./ft_printf.h"
 
-char	*strcpy(char *dst, const char *src)
+int	ft_p_write(va_list ap)
 {
-	int	i;
-	
-	i = 0;
-	while(src[i])
-	{
-		dst[i] = src[i];
-		i++;
-	}
-	dst[i] = '\n';
-	return (dst);
+	unsigned long long	address;
+
+	address = (unsigned long long)va_arg(ap, void *);
+	write(1, "0x", 2);
+	return (ft_hexadec(address, "0123456789abcdef") + 2);
 }

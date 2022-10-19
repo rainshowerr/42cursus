@@ -6,7 +6,7 @@
 /*   By: seoshin <seoshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/24 17:36:38 by seoshin           #+#    #+#             */
-/*   Updated: 2022/10/18 20:48:50 by seoshin          ###   ########.fr       */
+/*   Updated: 2022/10/19 21:36:11 by seoshin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,10 @@
 # define SO_LONG_H
 
 # include "./get_next_line/get_next_line.h"
+//# include "./ft_printf/ft_printf.h"
+# include <stdio.h>
 # include <fcntl.h>
+# include "./mlx/mlx.h"
 
 # define X_EVENT_KEY_RELEASE	3
 
