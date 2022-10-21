@@ -6,18 +6,16 @@
 /*   By: seoshin <seoshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/24 17:36:38 by seoshin           #+#    #+#             */
-/*   Updated: 2022/10/19 21:36:11 by seoshin          ###   ########.fr       */
+/*   Updated: 2022/10/21 18:45:24 by seoshin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SO_LONG_H
 # define SO_LONG_H
 
-# include "./get_next_line/get_next_line.h"
-//# include "./ft_printf/ft_printf.h"
-# include <stdio.h>
-# include <fcntl.h>
 # include "./mlx/mlx.h"
+# include "./get_next_line/get_next_line.h"
+# include <fcntl.h>
 
 # define X_EVENT_KEY_RELEASE	3
 
@@ -35,7 +33,7 @@ typedef struct s_param {
 typedef struct s_images {
 	void	*snow;
 	void	*tree;
-	void	*slime;
+	void	*player;
 	void	*collectible;
 	void	*enemy;
 	void	*exit;
@@ -58,7 +56,8 @@ typedef struct s_game{
 	t_images	images;
 }t_game;
 
-char	*strcpy(char *dst, const char *src);
+char	*ft_strcpy(char *dst, const char *src);
+void	ft_putnbr_n_newline(int n);
 int		key_hook(int keycode, t_game *game);
 void	destroy_map();
 void	init_game(t_game *game);

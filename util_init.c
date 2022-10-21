@@ -6,7 +6,7 @@
 /*   By: seoshin <seoshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 20:55:35 by seoshin           #+#    #+#             */
-/*   Updated: 2022/10/19 20:58:16 by seoshin          ###   ########.fr       */
+/*   Updated: 2022/10/21 18:45:13 by seoshin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,9 @@ void	set_image(t_game *game)
 {
 	(game->images).snow = mlx_xpm_file_to_image(game->mlx, "./images/snow.xpm", &((game->images).width), &((game->images).height));
 	(game->images).tree = mlx_xpm_file_to_image(game->mlx, "./images/tree.xpm", &((game->images).width), &((game->images).height));
-	(game->images).slime = mlx_xpm_file_to_image(game->mlx, "./images/slime.xpm", &((game->images).width), &((game->images).height));
+	(game->images).player = mlx_xpm_file_to_image(game->mlx, "./images/player.xpm", &((game->images).width), &((game->images).height));
 	(game->images).exit = mlx_xpm_file_to_image(game->mlx, "./images/exit.xpm", &((game->images).width), &((game->images).height));
 	(game->images).enemy = mlx_xpm_file_to_image(game->mlx, "./images/enemy.xpm", &((game->images).width), &((game->images).height));
+	(game->images).collectible = mlx_xpm_file_to_image(game->mlx, "./images/collectible.xpm", &((game->images).width), &((game->images).height));
+
 }

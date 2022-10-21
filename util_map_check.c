@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   util_map.c                                         :+:      :+:    :+:   */
+/*   util_map_check.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: seoshin <seoshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 20:53:32 by seoshin           #+#    #+#             */
-/*   Updated: 2022/10/19 20:57:01 by seoshin          ###   ########.fr       */
+/*   Updated: 2022/10/21 18:22:54 by seoshin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,7 @@ char	**read_map(t_game *game, char *fname)
 	{
 		map[idx] = (char *)malloc(game->col + 1);
 		line = get_next_line(fd);
-		strcpy(map[idx], line);
+		ft_strcpy(map[idx], line);
 		idx++;
 	}
 	close(fd);

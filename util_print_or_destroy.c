@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   util_print.c                                       :+:      :+:    :+:   */
+/*   util_print_or_destroy.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: seoshin <seoshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 20:58:34 by seoshin           #+#    #+#             */
-/*   Updated: 2022/10/19 20:58:58 by seoshin          ###   ########.fr       */
+/*   Updated: 2022/10/21 18:44:53 by seoshin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,14 +28,12 @@ void print_map(t_game *game)
 				mlx_put_image_to_window(game->mlx, game->win, (game->images).tree, 64 * j, 64 * i);
 			else if (game->map[i][j] == 'E')
 				mlx_put_image_to_window(game->mlx, game->win, (game->images).exit, 64 * j, 64 * i);
-			/*
-			else if (map[i][j] == 'C')
+			else if (game->map[i][j] == 'C')
 				mlx_put_image_to_window(game->mlx, game->win, (game->images).collectible, 64 * j, 64 * i);
-			*/
 			else if (game->map[i][j] == 'K')
 				mlx_put_image_to_window(game->mlx, game->win, (game->images).enemy, 64 * j, 64 * i);
 			else if (game->map[i][j] == 'P')
-				mlx_put_image_to_window(game->mlx, game->win, (game->images).slime, 64 * j, 64 * i);
+				mlx_put_image_to_window(game->mlx, game->win, (game->images).player, 64 * j, 64 * i);
 			j++;
 		}
 		i++;
