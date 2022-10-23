@@ -6,7 +6,7 @@
 /*   By: seoshin <seoshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/24 17:36:38 by seoshin           #+#    #+#             */
-/*   Updated: 2022/10/21 18:45:24 by seoshin          ###   ########.fr       */
+/*   Updated: 2022/10/23 21:56:18 by seoshin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include <fcntl.h>
 
 # define X_EVENT_KEY_RELEASE	3
+# define X_EVENT_KEY_EXIT	17
 
 # define ESC 53
 # define W 13
@@ -58,20 +59,24 @@ typedef struct s_game{
 
 char	*ft_strcpy(char *dst, const char *src);
 void	ft_putnbr_n_newline(int n);
-int		key_hook(int keycode, t_game *game);
-void	destroy_map();
-void	init_game(t_game *game);
-void	init_param(t_game *game);
-void	map_square_check(t_game	*game);
-void	check_char(t_game *game, char c);
-void	map_error_check(t_game *game);
-char	**read_map(t_game *game, char *fname);
-void	show_map(char **map, t_game *game);
-void	set_image(t_game *game);
-void	print_map(t_game *game);
-void	w_move(t_game *game);
-void	a_move(t_game *game);
-void	s_move(t_game *game);
-void	d_move(t_game *game);
+void	ft_putnbr_n_newline(int n);
+void	destroy_map(void);
+void	init_game(t_game *g);
+void	init_param(t_game *g);
+void	map_square_check(t_game	*g);
+void	check_char(t_game *g, char c);
+void	map_error_check(t_game *g);
+char	**read_map(t_game *g, char *fname);
+void	free_some(t_game *g, int row);
+void	free_all(t_game *g);
+void	set_image(t_game *g);
+void	print_map(t_game *g);
+void	print_tile(t_game *g, int i, int j);
+int		key_hook(int keycode, t_game *g);
+int		mouse_exit(t_game *g);
+void	w_move(t_game *g);
+void	a_move(t_game *g);
+void	s_move(t_game *g);
+void	d_move(t_game *g);
 
 #endif

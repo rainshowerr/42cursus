@@ -6,7 +6,7 @@
 /*   By: seoshin <seoshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 18:18:35 by seoshin           #+#    #+#             */
-/*   Updated: 2022/10/21 18:42:12 by seoshin          ###   ########.fr       */
+/*   Updated: 2022/10/23 20:13:19 by seoshin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ char	*ft_strcpy(char *dst, const char *src)
 	int	i;
 
 	i = 0;
-	while(src[i])
+	while (src[i])
 	{
 		dst[i] = src[i];
 		i++;

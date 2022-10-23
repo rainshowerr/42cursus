@@ -6,98 +6,148 @@
 /*   By: seoshin <seoshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 20:53:32 by seoshin           #+#    #+#             */
-/*   Updated: 2022/10/21 18:22:54 by seoshin          ###   ########.fr       */
+/*   Updated: 2022/10/23 21:43:17 by seoshin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-// 지도가 몇줄인지 체크하면서 직사각형 모양이 아닌지 확인!
-void	map_square_check(t_game	*game)
+int	check_len(char *line)
 {
-	int 	fd;
+	int	i;
+	int	len;
+
+	len = 0;
+	i = 0;
+	while (line[i])
+	{
+		if (line[i] != '\n')
+			len++;
+		i++;
+	}
+	return (len);
+}
+
+// 지도가 몇줄인지 체크하면서 직사각형 모양이 아닌지 확인!
+void	map_square_check(t_game	*g)
+{
+	int		fd;
 	char	*line;
 
 	fd = open("./map.ber", O_RDONLY);
 	line = get_next_line(fd);
 	if (!line)
 		destroy_map();
-	if (line[ft_strlen(line) - 1] == '\n')
-		game->col = ft_strlen(line) - 1;
-	else
-		game->col = ft_strlen(line);
-	free(line);
-	while(line)
+	g->col = ft_strlen(line) - 1;
+	while (line)
 	{
-		game->row++;
+		free(line);
+		g->row++;
 		line = get_next_line(fd);
 		if (line)
 		{
-			if (line[ft_strlen(line) - 1] == '\n' && (int)ft_strlen(line) != game->col + 1)
-			{
-				free(line);
-				destroy_map();
-			}
-			else if (line[ft_strlen(line) - 1] != '\n' && (int)ft_strlen(line) != game->col)
+			if (check_len(line) != g->col)
 			{
 				free(line);
 				destroy_map();
 			}
 		}
-		free(line);
 	}
 	close(fd);
 }
 
+void	free_all(t_game *g)
+{
+	int	i;
+
+	i = 0;
+	while(i < g->row)
+	{
+		free(g->map[i]);
+		i++;
+	}
+	free(g->map);
+}
+
+void	free_some(t_game *g, int row)
+{
+	int	i;
+
+	i = 0;
+	while(i < row)
+	{
+		free(g->map[i]);
+		i++;
+	}
+	free(g->map);
+}
+
 // 벽, 출구, 물고기, 시작지점 체크
-void	map_error_check(t_game *game)
+void	map_error_check(t_game *g)
 {
 	int	i;
 	int	j;
 
 	i = 0;
-	while(i < game->row)
+	while (i < g->row)
 	{
 		j = 0;
-		while(j < game->col)
+		while (j < g->col)
 		{
-			if ((i == 0 || j == 0 || i == game->row - 1 || j == game->col - 1) && (game->map[i][j] != '1'))
-				destroy_map();
-			check_char(game, game->map[i][j]);
+			if ((i == 0 || j == 0 || i == g->row - 1 || j == g->col - 1)
+				&& (g->map[i][j] != '1'))
+				{
+					free_all(g);
+					destroy_map();
+				}
+			check_char(g, g->map[i][j]);
 			j++;
 		}
 		i++;
 	}
-	if (game->collectible < 1 || game->exit < 1 || game->start != 1)
+	if (g->collectible < 1 || g->exit < 1 || g->start != 1)
+	{
+		free_all(g);
 		destroy_map();
+	}
 }
 
-void	check_char(t_game *game, char c)
+void	check_char(t_game *g, char c)
 {
-	if (c ==  'C')
-		game->collectible++;
+	if (c == 'C')
+		g->collectible++;
 	else if (c == 'E')
-		game->exit++;
+		g->exit++;
 	else if (c == 'P')
-		game->start++;
+		g->start++;
 	else if (c != '0' && c != '1' && c != 'K')
+	{
+		free_all(g);
 		destroy_map();
+	}
 }
 
-char	**read_map(t_game *game, char *fname)
+char	**read_map(t_game *g, char *fname)
 {
 	int		fd;
 	char	*line;
 	char	**map;
 	int		idx;
 
-	map_square_check(game);
+	map_square_check(g);
 	fd = open(fname, O_RDONLY);
-	map = (char **)malloc(sizeof(char *) * game->row);
+	map = (char **)malloc(sizeof(char *) * g->row);
+	if (!map)
+		return (0);
 	idx = 0;
-	while(idx < game->row)
+	while (idx < g->row)
 	{
-		map[idx] = (char *)malloc(game->col + 1);
+		map[idx] = (char *)malloc(g->col + 1);
+		if (!map[idx])
+		{
+			free_some(g, idx - 1);
+			return (0);
+		}
 		line = get_next_line(fd);
 		ft_strcpy(map[idx], line);
 		idx++;

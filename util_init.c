@@ -6,39 +6,39 @@
 /*   By: seoshin <seoshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 20:55:35 by seoshin           #+#    #+#             */
-/*   Updated: 2022/10/21 18:45:13 by seoshin          ###   ########.fr       */
+/*   Updated: 2022/10/23 20:11:39 by seoshin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void init_game(t_game *game)
+void	init_game(t_game *g)
 {
-	game->row = 0;
-	game->col = 0;
-	game->exit = 0;
-	game->collectible = 0;
-	game->get = 0;
-	game->start = 0;
-	game->move = 0;
+	g->row = 0;
+	g->col = 0;
+	g->exit = 0;
+	g->collectible = 0;
+	g->get = 0;
+	g->start = 0;
+	g->move = 0;
 }
 
-void	init_param(t_game *game)
+void	init_param(t_game *g)
 {
 	int	i;
 	int	j;
 
 	i = 0;
-	while(i < game->row)
+	while (i < g->row)
 	{
 		j = 0;
-		while(j < game->col)
+		while (j < g->col)
 		{
-			if (game->map[i][j] == 'P')
+			if (g->map[i][j] == 'P')
 			{
-				game->param.x = i;
-				game->param.y = j;
-				return;
+				g->param.x = i;
+				g->param.y = j;
+				return ;
 			}
 			j++;
 		}
@@ -46,13 +46,18 @@ void	init_param(t_game *game)
 	}
 }
 
-void	set_image(t_game *game)
+void	set_image(t_game *g)
 {
-	(game->images).snow = mlx_xpm_file_to_image(game->mlx, "./images/snow.xpm", &((game->images).width), &((game->images).height));
-	(game->images).tree = mlx_xpm_file_to_image(game->mlx, "./images/tree.xpm", &((game->images).width), &((game->images).height));
-	(game->images).player = mlx_xpm_file_to_image(game->mlx, "./images/player.xpm", &((game->images).width), &((game->images).height));
-	(game->images).exit = mlx_xpm_file_to_image(game->mlx, "./images/exit.xpm", &((game->images).width), &((game->images).height));
-	(game->images).enemy = mlx_xpm_file_to_image(game->mlx, "./images/enemy.xpm", &((game->images).width), &((game->images).height));
-	(game->images).collectible = mlx_xpm_file_to_image(game->mlx, "./images/collectible.xpm", &((game->images).width), &((game->images).height));
-
+	(g->images).snow = mlx_xpm_file_to_image(g->mlx, \
+	"./images/snow.xpm", &((g->images).width), &((g->images).height));
+	(g->images).tree = mlx_xpm_file_to_image(g->mlx, \
+	"./images/tree.xpm", &((g->images).width), &((g->images).height));
+	(g->images).player = mlx_xpm_file_to_image(g->mlx, \
+	"./images/player.xpm", &((g->images).width), &((g->images).height));
+	(g->images).exit = mlx_xpm_file_to_image(g->mlx, \
+	"./images/exit.xpm", &((g->images).width), &((g->images).height));
+	(g->images).enemy = mlx_xpm_file_to_image(g->mlx, \
+	"./images/enemy.xpm", &((g->images).width), &((g->images).height));
+	(g->images).collectible = mlx_xpm_file_to_image(g->mlx, \
+	"./images/collectible.xpm", &((g->images).width), &((g->images).height));
 }
