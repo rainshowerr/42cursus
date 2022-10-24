@@ -6,22 +6,11 @@
 /*   By: seoshin <seoshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 20:55:35 by seoshin           #+#    #+#             */
-/*   Updated: 2022/10/23 20:11:39 by seoshin          ###   ########.fr       */
+/*   Updated: 2022/10/24 19:40:15 by seoshin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-
-void	init_game(t_game *g)
-{
-	g->row = 0;
-	g->col = 0;
-	g->exit = 0;
-	g->collectible = 0;
-	g->get = 0;
-	g->start = 0;
-	g->move = 0;
-}
 
 void	init_param(t_game *g)
 {
@@ -44,6 +33,17 @@ void	init_param(t_game *g)
 		}
 		i++;
 	}
+}
+
+void	init_game(t_game *g)
+{
+	g->row = 0;
+	g->col = 0;
+	g->exit = 0;
+	g->collectible = 0;
+	g->get = 0;
+	g->start = 0;
+	g->move = 0;
 }
 
 void	set_image(t_game *g)

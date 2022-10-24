@@ -6,7 +6,7 @@
 /*   By: seoshin <seoshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/24 17:36:38 by seoshin           #+#    #+#             */
-/*   Updated: 2022/10/23 21:56:18 by seoshin          ###   ########.fr       */
+/*   Updated: 2022/10/24 19:40:22 by seoshin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,16 +57,16 @@ typedef struct s_game{
 	t_images	images;
 }t_game;
 
+void	ft_putnbr_n_newline(int n);
 char	*ft_strcpy(char *dst, const char *src);
-void	ft_putnbr_n_newline(int n);
-void	ft_putnbr_n_newline(int n);
 void	destroy_map(void);
-void	init_game(t_game *g);
 void	init_param(t_game *g);
-void	map_square_check(t_game	*g);
+void	init_game(t_game *g);
+void	map_square_check(t_game	*g, char *fname);
 void	check_char(t_game *g, char c);
 void	map_error_check(t_game *g);
 char	**read_map(t_game *g, char *fname);
+int		check_len(char *line);
 void	free_some(t_game *g, int row);
 void	free_all(t_game *g);
 void	set_image(t_game *g);

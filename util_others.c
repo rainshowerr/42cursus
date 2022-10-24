@@ -6,7 +6,7 @@
 /*   By: seoshin <seoshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 18:18:35 by seoshin           #+#    #+#             */
-/*   Updated: 2022/10/23 20:13:19 by seoshin          ###   ########.fr       */
+/*   Updated: 2022/10/24 20:09:39 by seoshin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ char	*ft_strcpy(char *dst, const char *src)
 		dst[i] = src[i];
 		i++;
 	}
+	dst[i] = 0;
 	return (dst);
 }
 

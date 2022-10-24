@@ -1,34 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   util_key_hook_1.c                                  :+:      :+:    :+:   */
+/*   util_free.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: seoshin <seoshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/23 20:31:44 by seoshin           #+#    #+#             */
-/*   Updated: 2022/10/24 19:39:01 by seoshin          ###   ########.fr       */
+/*   Created: 2022/10/24 20:08:30 by seoshin           #+#    #+#             */
+/*   Updated: 2022/10/24 20:09:01 by seoshin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int	key_hook(int keycode, t_game *g)
+void	free_all(t_game *g)
 {
-	if (keycode == ESC)
-		exit(0);
-	else if (keycode == W)
-		w_move(g);
-	else if (keycode == A)
-		a_move(g);
-	else if (keycode == S)
-		s_move(g);
-	else if (keycode == D)
-		d_move(g);
-	return (0);
+	int	i;
+
+	i = 0;
+	while (i < g->row)
+	{
+		free(g->map[i]);
+		i++;
+	}
+	free(g->map);
 }
 
-int	mouse_exit(t_game *g)
+void	free_some(t_game *g, int row)
 {
-	mlx_destroy_window(g->mlx, g->win);
-	exit(0);
+	int	i;
+
+	i = 0;
+	while (i <= row)
+	{
+		free(g->map[i]);
+		i++;
+	}
+	free(g->map);
 }

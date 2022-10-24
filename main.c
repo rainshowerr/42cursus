@@ -6,7 +6,7 @@
 /*   By: seoshin <seoshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/16 17:05:10 by seoshin           #+#    #+#             */
-/*   Updated: 2022/10/23 21:58:52 by seoshin          ###   ########.fr       */
+/*   Updated: 2022/10/24 20:10:03 by seoshin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 int	main(int ac, char **av)
 {
 	t_game		g;
+
 	init_game(&g);
 	ac = 0;
 	g.map = read_map(&g, av[1]);
