@@ -6,7 +6,7 @@
 /*   By: seoshin <seoshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 20:58:34 by seoshin           #+#    #+#             */
-/*   Updated: 2022/10/23 20:21:30 by seoshin          ###   ########.fr       */
+/*   Updated: 2022/10/24 21:05:51 by seoshin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,6 @@ void	print_tile(t_game *g, int i, int j)
 
 void	destroy_map(void)
 {
-	write(1, "error\nbad map -_-\n", 18);
+	write(1, "error\nwrong map -_-\n", 18);
 	exit(0);
 }

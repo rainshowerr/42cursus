@@ -6,7 +6,7 @@
 #    By: seoshin <seoshin@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/13 17:05:34 by seoshin           #+#    #+#              #
-#    Updated: 2022/10/23 20:33:20 by seoshin          ###   ########.fr        #
+#    Updated: 2022/10/24 21:18:34 by seoshin          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,11 +14,11 @@ CC			=	cc
 
 CFLAGS		=	-Wall -Wextra -Werror
 
-MLX_FLAGS	=	-L./mlx -lmlx -framework OpenGL -framework AppKit
+MLX_FLAGS	=	-lmlx -framework OpenGL -framework AppKit
 
 SRCS		=	main.c get_next_line/get_next_line.c get_next_line/get_next_line_utils.c \
 				util_init.c util_key_hook_1.c util_key_hook_2.c util_map_check.c util_print_or_destroy.c \
-				util_others.c
+				util_free.c util_others.c
 
 OBJS		=	$(SRCS:.c=.o)
 

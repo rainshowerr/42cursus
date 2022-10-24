@@ -27,15 +27,15 @@ size_t	ft_strlen(const char	*src)
 char	*ft_strjoin(char *s1, char *s2)
 {
 	char	*str;
-	int	i;
-	int	j;
-	int	s1_len;
-	int	s2_len;
+	size_t	i;
+	size_t	j;
+	size_t	s1_len;
+	size_t	s2_len;
 
 	if (s1 == 0)
 		return (ft_strdup(s2));
-	s1_len = (int)ft_strlen(s1);
-	s2_len = (int)ft_strlen(s2);
+	s1_len = ft_strlen(s1);
+	s2_len = ft_strlen(s2);
 	str = (char *)malloc(sizeof(char) * (s1_len + s2_len + 1));
 	if (!str)
 		return (0);
