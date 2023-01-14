@@ -6,11 +6,24 @@
 /*   By: seoshin <seoshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 20:58:34 by seoshin           #+#    #+#             */
-/*   Updated: 2022/10/24 21:05:51 by seoshin          ###   ########.fr       */
+/*   Updated: 2023/01/14 21:33:16 by seoshin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+
+void	test_map(t_game *temp)
+{
+	int	i;
+	int	j;
+
+	for (i = 0; i < temp->row; i++)
+	{
+		for (j = 0; j < temp->col; j++)
+			write(1, &temp->map[i][j], 1);
+		write(1, "\n", 1);
+	}
+}
 
 void	print_map(t_game *g)
 {

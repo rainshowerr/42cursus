@@ -6,12 +6,13 @@
 /*   By: seoshin <seoshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 20:55:35 by seoshin           #+#    #+#             */
-/*   Updated: 2022/10/24 19:40:15 by seoshin          ###   ########.fr       */
+/*   Updated: 2023/01/14 20:54:30 by seoshin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
+// 플레이어의 시작지점을 저장하는 함수
 void	init_param(t_game *g)
 {
 	int	i;
@@ -35,6 +36,7 @@ void	init_param(t_game *g)
 	}
 }
 
+// 맵 정보를 0으로 초기화하는 함수
 void	init_game(t_game *g)
 {
 	g->row = 0;
@@ -46,6 +48,7 @@ void	init_game(t_game *g)
 	g->move = 0;
 }
 
+// 이미지 정보를 저장하는 함수
 void	set_image(t_game *g)
 {
 	(g->images).snow = mlx_xpm_file_to_image(g->mlx, \
@@ -60,4 +63,16 @@ void	set_image(t_game *g)
 	"./images/enemy.xpm", &((g->images).width), &((g->images).height));
 	(g->images).collectible = mlx_xpm_file_to_image(g->mlx, \
 	"./images/collectible.xpm", &((g->images).width), &((g->images).height));
+}
+
+void	init_queue(Queue *queue)
+{
+	queue->front = 0;
+	queue->rear = 0;
+	queue->count = 0;
+	queue->i = 0;
+	queue->dx = 0;
+	queue->dy = 0;
+	(queue->data).collectible = 0;
+	(queue->data).exit = 0;
 }

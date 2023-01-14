@@ -6,7 +6,7 @@
 /*   By: seoshin <seoshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 20:53:32 by seoshin           #+#    #+#             */
-/*   Updated: 2022/10/24 20:08:19 by seoshin          ###   ########.fr       */
+/*   Updated: 2023/01/14 21:43:47 by seoshin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ char	**read_map(t_game *g, char *fname)
 		free(line);
 		idx++;
 	}
+	printf("check!!!!\n");
 	close(fd);
 	return (g->map);
 }

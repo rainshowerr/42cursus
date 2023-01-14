@@ -6,7 +6,7 @@
 /*   By: seoshin <seoshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/24 17:36:38 by seoshin           #+#    #+#             */
-/*   Updated: 2022/10/24 21:20:10 by seoshin          ###   ########.fr       */
+/*   Updated: 2023/01/14 21:34:05 by seoshin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <mlx.h>
 # include <fcntl.h>
 # include "./get_next_line/get_next_line.h"
+# include <stdio.h>
 
 # define X_EVENT_KEY_RELEASE 3
 # define X_EVENT_KEY_EXIT 17
@@ -57,6 +58,26 @@ typedef struct s_game{
 	t_images	images;
 }t_game;
 
+typedef struct Node
+{
+	int			x;
+	int			y;
+	struct Node	*next;
+}				Node;
+
+typedef struct Queue
+{
+	Node	*front;
+	Node	*rear;
+	int		count;
+	t_game	data;
+	int		i;
+	int		dx;
+	int		dy;
+	int		x;
+	int		y;
+}			Queue;
+
 char	*ft_strcpy(char *dst, const char *src);
 void	ft_putnbr_n_newline(int n);
 void	print_map(t_game *g);
@@ -78,5 +99,13 @@ void	w_move(t_game *g);
 void	a_move(t_game *g);
 void	s_move(t_game *g);
 void	d_move(t_game *g);
+void	init_queue(Queue *queue);
+int		isEmpty(Queue *queue);
+void	enqueue(Queue *queue, int x, int y);
+int		dequeue(Queue *queue, int *x, int *y);
+void	bfs(t_game *temp);
+int		is_valid(t_game *temp, int dx, int dy, t_game *cnt);
+
+void	test_map(t_game *temp);
 
 #endif
