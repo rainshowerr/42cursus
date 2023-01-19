@@ -6,7 +6,7 @@
 /*   By: seoshin <seoshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/24 17:36:38 by seoshin           #+#    #+#             */
-/*   Updated: 2023/01/14 21:34:05 by seoshin          ###   ########.fr       */
+/*   Updated: 2023/01/19 20:05:51 by seoshin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,12 +80,14 @@ typedef struct Queue
 
 char	*ft_strcpy(char *dst, const char *src);
 void	ft_putnbr_n_newline(int n);
+int		ft_strnstr(const char *haystack, const char *needle, size_t len);
 void	print_map(t_game *g);
 void	print_tile(t_game *g, int i, int j);
-void	destroy_map(void);
+void	destroy_map(char *msg);
 void	init_param(t_game *g);
 void	init_game(t_game *g);
 void	set_image(t_game *g);
+int		map_name_check(char **av);
 void	map_square_check(t_game	*g, char *fname);
 char	**read_map(t_game *g, char *fname);
 void	map_error_check(t_game *g);

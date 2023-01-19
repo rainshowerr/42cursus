@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   util_map_check.c                                   :+:      :+:    :+:   */
+/*   util_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: seoshin <seoshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 20:53:32 by seoshin           #+#    #+#             */
-/*   Updated: 2023/01/14 21:43:47 by seoshin          ###   ########.fr       */
+/*   Updated: 2023/01/19 20:04:31 by seoshin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	map_square_check(t_game	*g, char *fname)
 	fd = open(fname, O_RDONLY);
 	line = get_next_line(fd);
 	if (!line)
-		destroy_map();
+		destroy_map("Error\nCheck map\n");
 	g->col = ft_strlen(line) - 1;
 	while (line)
 	{
@@ -31,12 +31,13 @@ void	map_square_check(t_game	*g, char *fname)
 		if (line && check_len(line) != g->col)
 		{
 			free(line);
-			destroy_map();
+			destroy_map("Error\nCheck map\n");
 		}
 	}
 	close(fd);
 }
 
+// 맵이 사각형인지 확인 후 읽어들임
 char	**read_map(t_game *g, char *fname)
 {
 	int		fd;
@@ -47,7 +48,7 @@ char	**read_map(t_game *g, char *fname)
 	fd = open(fname, O_RDONLY);
 	g->map = (char **)malloc(sizeof(char *) * g->row);
 	if (!g->map)
-		destroy_map();
+		destroy_map("Error\nCheck map\n");
 	idx = 0;
 	while (idx < g->row)
 	{
@@ -62,12 +63,11 @@ char	**read_map(t_game *g, char *fname)
 		free(line);
 		idx++;
 	}
-	printf("check!!!!\n");
 	close(fd);
 	return (g->map);
 }
 
-// 벽, 출구, 물고기, 시작지점 체크
+// 가장자리 벽 확인 및 출구, 컬렉션, 시작지점 개수 체크 후 문제가 없는지 확인
 void	map_error_check(t_game *g)
 {
 	int	i;
@@ -83,7 +83,7 @@ void	map_error_check(t_game *g)
 				&& (g->map[i][j] != '1'))
 			{
 				free_all(g);
-				destroy_map();
+				destroy_map("Error\nCheck map\n");
 			}
 			check_char(g, g->map[i][j]);
 			j++;
@@ -93,7 +93,7 @@ void	map_error_check(t_game *g)
 	if (g->collectible < 1 || g->exit < 1 || g->start != 1)
 	{
 		free_all(g);
-		destroy_map();
+		destroy_map("Error\nCheck map\n");
 	}
 }
 
@@ -124,6 +124,6 @@ void	check_char(t_game *g, char c)
 	else if (c != '0' && c != '1' && c != 'K')
 	{
 		free_all(g);
-		destroy_map();
+		destroy_map("Error\nCheck map\n");
 	}
 }

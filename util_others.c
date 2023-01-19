@@ -6,7 +6,7 @@
 /*   By: seoshin <seoshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 18:18:35 by seoshin           #+#    #+#             */
-/*   Updated: 2022/10/24 20:09:39 by seoshin          ###   ########.fr       */
+/*   Updated: 2023/01/19 19:59:35 by seoshin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,4 +59,25 @@ void	ft_putnbr_n_newline(int n)
 {
 	ft_putnbr(n);
 	write(1, "\n", 1);
+}
+
+int	ft_strnstr(const char *haystack, const char *needle, size_t len)
+{
+	size_t	i;
+	size_t	j;
+
+	i = 0;
+	j = 0;
+	if (needle[j] == '\0')
+		return (1);
+	while (haystack[i])
+	{
+		while (haystack[i + j] && haystack[i + j] == needle[j] && i + j < len)
+			j++;
+		if (!needle[j] && !haystack[i + j])
+			return (1);
+		i++;
+		j = 0;
+	}
+	return (0);
 }

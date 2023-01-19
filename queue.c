@@ -78,15 +78,12 @@ void bfs(t_game *temp)
 			{
 				enqueue(&queue, queue.x, queue.y);
 				temp->map[queue.x][queue.y] = 'x';
-				// printf("%d,%d\n", queue.x, queue.y);
-				test_map(temp);
-				printf("\n");
 			}
 			queue.i++;
 		}
 	}
 	if (queue.data.collectible != (temp->collectible) || queue.data.exit < 1)
-		destroy_map(); // exit(0)으로 탈탈출출!
+		destroy_map("Error\nCheck map\n"); // exit(0)으로 탈탈출출!
 }
 
 int is_valid(t_game *temp, int dx, int dy, t_game *cnt)
