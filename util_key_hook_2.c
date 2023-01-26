@@ -6,7 +6,7 @@
 /*   By: seoshin <seoshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 20:56:17 by seoshin           #+#    #+#             */
-/*   Updated: 2023/01/19 17:27:06 by seoshin          ###   ########.fr       */
+/*   Updated: 2023/01/26 18:24:51 by seoshin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,12 @@ void	w_move(t_game *g)
 		print_map(g);
 	}
 	else if ((((g->map)[(g->param).x - 1][(g->param).y] == 'E')
-		&& (g->collectible == g->get))
-		|| (g->map)[(g->param).x - 1][(g->param).y] == 'K')
+		&& (g->collectible == g->get)))
 	{
 		g->move++;
 		ft_putnbr_n_newline(g->move);
+		mlx_destroy_window(g->mlx, g->win);
+		free_all(g);
 		exit(0);
 	}
 }
@@ -51,11 +52,12 @@ void	a_move(t_game *g)
 		print_map(g);
 	}
 	else if ((((g->map)[(g->param).x][(g->param).y - 1] == 'E')
-		&& (g->collectible == g->get))
-		|| (g->map)[(g->param).x][(g->param).y - 1] == 'K')
+		&& (g->collectible == g->get)))
 	{
 		g->move++;
 		ft_putnbr_n_newline(g->move);
+		mlx_destroy_window(g->mlx, g->win);
+		free_all(g);
 		exit(0);
 	}
 }
@@ -75,11 +77,12 @@ void	s_move(t_game *g)
 		print_map(g);
 	}
 	else if ((((g->map)[(g->param).x + 1][(g->param).y] == 'E')
-		&& (g->collectible == g->get))
-		|| (g->map)[(g->param).x + 1][(g->param).y] == 'K')
+		&& (g->collectible == g->get)))
 	{
 		g->move++;
 		ft_putnbr_n_newline(g->move);
+		mlx_destroy_window(g->mlx, g->win);
+		free_all(g);
 		exit(0);
 	}
 }
@@ -99,11 +102,12 @@ void	d_move(t_game *g)
 		print_map(g);
 	}
 	else if ((((g->map)[(g->param).x][(g->param).y + 1] == 'E')
-		&& (g->collectible == g->get))
-		|| (g->map)[(g->param).x][(g->param).y + 1] == 'K')
+		&& (g->collectible == g->get)))
 	{
 		g->move++;
 		ft_putnbr_n_newline(g->move);
+		mlx_destroy_window(g->mlx, g->win);
+		free_all(g);
 		exit(0);
 	}
 }

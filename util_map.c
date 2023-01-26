@@ -6,13 +6,12 @@
 /*   By: seoshin <seoshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 20:53:32 by seoshin           #+#    #+#             */
-/*   Updated: 2023/01/19 20:04:31 by seoshin          ###   ########.fr       */
+/*   Updated: 2023/01/26 18:48:40 by seoshin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-// 지도가 몇줄인지 체크하면서 직사각형 모양이 아닌지 확인!
 void	map_square_check(t_game	*g, char *fname)
 {
 	int		fd;
@@ -37,7 +36,6 @@ void	map_square_check(t_game	*g, char *fname)
 	close(fd);
 }
 
-// 맵이 사각형인지 확인 후 읽어들임
 char	**read_map(t_game *g, char *fname)
 {
 	int		fd;
@@ -56,7 +54,7 @@ char	**read_map(t_game *g, char *fname)
 		if (!g->map[idx])
 		{
 			free_some(g, idx - 1);
-			exit(0);
+			exit(1);
 		}
 		line = get_next_line(fd);
 		ft_strcpy(g->map[idx], line);
@@ -67,7 +65,6 @@ char	**read_map(t_game *g, char *fname)
 	return (g->map);
 }
 
-// 가장자리 벽 확인 및 출구, 컬렉션, 시작지점 개수 체크 후 문제가 없는지 확인
 void	map_error_check(t_game *g)
 {
 	int	i;
@@ -90,7 +87,7 @@ void	map_error_check(t_game *g)
 		}
 		i++;
 	}
-	if (g->collectible < 1 || g->exit < 1 || g->start != 1)
+	if (g->collectible < 1 || g->exit != 1 || g->start != 1)
 	{
 		free_all(g);
 		destroy_map("Error\nCheck map\n");
@@ -121,7 +118,7 @@ void	check_char(t_game *g, char c)
 		g->exit++;
 	else if (c == 'P')
 		g->start++;
-	else if (c != '0' && c != '1' && c != 'K')
+	else if (c != '0' && c != '1')
 	{
 		free_all(g);
 		destroy_map("Error\nCheck map\n");

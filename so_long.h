@@ -6,7 +6,7 @@
 /*   By: seoshin <seoshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/24 17:36:38 by seoshin           #+#    #+#             */
-/*   Updated: 2023/01/19 20:05:51 by seoshin          ###   ########.fr       */
+/*   Updated: 2023/01/26 17:15:17 by seoshin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 # include <mlx.h>
 # include <fcntl.h>
 # include "./get_next_line/get_next_line.h"
-# include <stdio.h>
 
 # define X_EVENT_KEY_RELEASE 3
 # define X_EVENT_KEY_EXIT 17
@@ -37,7 +36,6 @@ typedef struct s_images {
 	void	*tree;
 	void	*player;
 	void	*collectible;
-	void	*enemy;
 	void	*exit;
 	int		width;
 	int		height;
@@ -58,17 +56,17 @@ typedef struct s_game{
 	t_images	images;
 }t_game;
 
-typedef struct Node
+typedef struct s_node
 {
-	int			x;
-	int			y;
-	struct Node	*next;
-}				Node;
+	int				x;
+	int				y;
+	struct s_node	*next;
+}t_node;
 
-typedef struct Queue
+typedef struct s_queue
 {
-	Node	*front;
-	Node	*rear;
+	t_node	*front;
+	t_node	*rear;
 	int		count;
 	t_game	data;
 	int		i;
@@ -76,7 +74,7 @@ typedef struct Queue
 	int		dy;
 	int		x;
 	int		y;
-}			Queue;
+}t_queue;
 
 char	*ft_strcpy(char *dst, const char *src);
 void	ft_putnbr_n_newline(int n);
@@ -101,13 +99,11 @@ void	w_move(t_game *g);
 void	a_move(t_game *g);
 void	s_move(t_game *g);
 void	d_move(t_game *g);
-void	init_queue(Queue *queue);
-int		isEmpty(Queue *queue);
-void	enqueue(Queue *queue, int x, int y);
-int		dequeue(Queue *queue, int *x, int *y);
+void	init_queue(t_queue *queue);
+int		isempty(t_queue *queue);
+void	enqueue(t_queue *queue, int x, int y);
+int		dequeue(t_queue *queue, int *x, int *y);
 void	bfs(t_game *temp);
 int		is_valid(t_game *temp, int dx, int dy, t_game *cnt);
-
-void	test_map(t_game *temp);
 
 #endif

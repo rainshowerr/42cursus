@@ -12,26 +12,26 @@
 
 #include "./so_long.h"
 
-int isEmpty(Queue *queue)
+int	isempty(t_queue *queue)
 {
 	if (queue->count == 0)
 		return (1);
 	return (0);
 }
 
-void enqueue(Queue *queue, int x, int y)
+void	enqueue(t_queue *queue, int x, int y)
 {
-	Node	*newnode;
-	newnode = (Node *)malloc(sizeof(Node));
+	t_node	*newnode;
+
+	newnode = (t_node *)malloc(sizeof(t_node));
 	newnode->x = x;
 	newnode->y = y;
 	newnode->next = 0;
-	// queue가 비어있을 때.
-	if (isEmpty(queue))
+	if (isempty(queue))
 	{
 		queue->front = newnode;
 	}
-	else //큐가 비지 않았을 때 
+	else
 	{
 		queue->rear->next = newnode;
 	}
@@ -39,13 +39,14 @@ void enqueue(Queue *queue, int x, int y)
 	queue->count++;
 }
 
-int dequeue(Queue *queue, int *x, int *y)
+int	dequeue(t_queue *queue, int *x, int *y)
 {
-	Node	*ptr;
-	if (isEmpty(queue))
+	t_node	*ptr;
+
+	if (isempty(queue))
 	{
 		write(1, "Error\n", 6);
-		return (0); 
+		return (0);
 	}
 	ptr = queue->front;
 	*x = ptr->x;
@@ -56,17 +57,15 @@ int dequeue(Queue *queue, int *x, int *y)
 	return (1);
 }
 
-void bfs(t_game *temp)
+void	bfs(t_game *temp)
 {
-	Queue		queue;
+	t_queue		queue;
 	const int	arr[4][2] = {{0, 1}, {0, -1}, {1, 0}, {-1, 0}};
-	
+
 	init_queue(&queue);
-	//처음 enqueue할 data는 플레이어의 위치. 
 	enqueue(&queue, (temp->param).x, (temp->param).y);
 	temp->map[(temp->param).x][(temp->param).y] = 'x';
-	//queue가 비어질 때까지.
-	while (!(isEmpty(&queue)))
+	while (!(isempty(&queue)))
 	{
 		queue.i = 0;
 		dequeue(&queue, &queue.dx, &queue.dy);
@@ -83,10 +82,10 @@ void bfs(t_game *temp)
 		}
 	}
 	if (queue.data.collectible != (temp->collectible) || queue.data.exit < 1)
-		destroy_map("Error\nCheck map\n"); // exit(0)으로 탈탈출출!
+		destroy_map("Error\nCheck map\n");
 }
 
-int is_valid(t_game *temp, int dx, int dy, t_game *cnt)
+int	is_valid(t_game *temp, int dx, int dy, t_game *cnt)
 {
 	if (dx < 0 || temp->row <= dx)
 		return (0);

@@ -6,7 +6,7 @@
 /*   By: seoshin <seoshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 20:55:35 by seoshin           #+#    #+#             */
-/*   Updated: 2023/01/14 20:54:30 by seoshin          ###   ########.fr       */
+/*   Updated: 2023/01/26 17:13:16 by seoshin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,13 +59,11 @@ void	set_image(t_game *g)
 	"./images/player.xpm", &((g->images).width), &((g->images).height));
 	(g->images).exit = mlx_xpm_file_to_image(g->mlx, \
 	"./images/exit.xpm", &((g->images).width), &((g->images).height));
-	(g->images).enemy = mlx_xpm_file_to_image(g->mlx, \
-	"./images/enemy.xpm", &((g->images).width), &((g->images).height));
 	(g->images).collectible = mlx_xpm_file_to_image(g->mlx, \
 	"./images/collectible.xpm", &((g->images).width), &((g->images).height));
 }
 
-void	init_queue(Queue *queue)
+void	init_queue(t_queue *queue)
 {
 	queue->front = 0;
 	queue->rear = 0;
