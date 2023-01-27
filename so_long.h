@@ -6,7 +6,7 @@
 /*   By: seoshin <seoshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/24 17:36:38 by seoshin           #+#    #+#             */
-/*   Updated: 2023/01/26 17:15:17 by seoshin          ###   ########.fr       */
+/*   Updated: 2023/01/27 18:35:26 by seoshin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # include <fcntl.h>
 # include "./get_next_line/get_next_line.h"
 
-# define X_EVENT_KEY_RELEASE 3
+# define X_EVENT_KEY_PRESS 2
 # define X_EVENT_KEY_EXIT 17
 
 # define ESC 53

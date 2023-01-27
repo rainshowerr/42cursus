@@ -6,13 +6,12 @@
 /*   By: seoshin <seoshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 20:55:35 by seoshin           #+#    #+#             */
-/*   Updated: 2023/01/26 17:13:16 by seoshin          ###   ########.fr       */
+/*   Updated: 2023/01/27 18:34:49 by seoshin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-// 플레이어의 시작지점을 저장하는 함수
 void	init_param(t_game *g)
 {
 	int	i;
@@ -36,7 +35,6 @@ void	init_param(t_game *g)
 	}
 }
 
-// 맵 정보를 0으로 초기화하는 함수
 void	init_game(t_game *g)
 {
 	g->row = 0;
@@ -48,7 +46,6 @@ void	init_game(t_game *g)
 	g->move = 0;
 }
 
-// 이미지 정보를 저장하는 함수
 void	set_image(t_game *g)
 {
 	(g->images).snow = mlx_xpm_file_to_image(g->mlx, \

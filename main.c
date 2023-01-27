@@ -6,7 +6,7 @@
 /*   By: seoshin <seoshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/16 17:05:10 by seoshin           #+#    #+#             */
-/*   Updated: 2023/01/19 20:02:59 by seoshin          ###   ########.fr       */
+/*   Updated: 2023/01/27 18:36:13 by seoshin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	main(int ac, char **av)
 	map_error_check(&g);
 	g.mlx = mlx_init();
 	g.win = mlx_new_window(g.mlx, 64 * g.col, 64 * g.row, "so_long");
-	mlx_hook(g.win, X_EVENT_KEY_RELEASE, 0, &key_hook, &g);
+	mlx_hook(g.win, X_EVENT_KEY_PRESS, 0, &key_hook, &g);
 	mlx_hook(g.win, X_EVENT_KEY_EXIT, 0, &mouse_exit, &g);
 	set_image(&g);
 	print_map(&g);
