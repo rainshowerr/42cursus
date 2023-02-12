@@ -1,63 +1,73 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   server.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: seoshin <seoshin@student.42seoul.kr>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/02/04 18:56:04 by coh               #+#    #+#             */
+/*   Updated: 2023/02/10 21:00:28 by seoshin          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minitalk.h"
 
-int ft_pow(int n, int i)
+void bin_to_char(int sig, siginfo_t *info, void *context)
 {
-    int idx;
-    int num;
+    static char	temp;
+	static int	bit;
 
-    idx = 0;
-    num = 1;
-    while(idx < i)
-    {
-        num *= n;
-        idx++;
-    }
-    return num;
+	if (sig == SIGUSR1 && bit < 8)
+        temp <<= 1;
+	else if (sig == SIGUSR2 && bit < 8)
+	{
+        temp <<= 1;
+		temp |= 1;
+	}
+	bit++;
+	if (bit == 8)
+	{
+        if (temp != 0)
+		    write(1, &temp, 1);
+        else
+            kill(info->si_pid, SIGUSR1);
+		bit = 0;
+		temp = 0;
+	}
 }
 
-int convert(int n) {
-    int dec = 0, i = 0, rem;
-    while (n != 0) {
-        rem = n % 10;
-        n /= 10;
-        dec += rem * ft_pow(2, i);
+size_t ft_strlen(char *str)
+{
+    size_t  i;
+
+    i = 0;
+    while (str[i])
         i++;
-    }
-    return dec;
+    return (i);
 }
 
-void    handler(int sig)
+void print_msg(char *msg)
 {
-    static int cnt;
-    static int temp;
-
-    if (sig == SIGUSR1)
-    {
-        temp += 1;
-        printf("sig1\n");
-    }
-    else if (sig == SIGUSR2)
-    {
-        temp += 0;
-        printf("sig2\n");
-    }
-    cnt++;
-    if (cnt != 8)
-        temp *= 10;
-    else
-    {
-        printf("8bit finish\n");
-        printf("%c", convert(temp));
-        temp = 0;
-        cnt = 0;
-    }
+    write(1, msg, ft_strlen(msg));
+    exit(1);
 }
 
-int	main(void)
+int main(int ac, char *av[])
 {
-	printf("server pid : %d\n", getpid());
-	signal(SIGUSR1, handler);
-	signal(SIGUSR2, handler);
-	while (1)
-		pause();
+    struct sigaction test;
+    
+    (void)av;
+    if (ac != 1)
+        print_msg("format error is occured\n");
+    printf("server's pid는 %d\n", getpid());
+    test.sa_flags = SA_SIGINFO;
+    test.sa_sigaction = bin_to_char;
+    sigemptyset(&test.sa_mask);
+
+    if (sigaction(SIGUSR1, &test, 0) == -1)
+        print_msg("error is occured in receiving SIGUSR1\n");
+    if (sigaction(SIGUSR2, &test, 0) == -1)
+        print_msg("error is occured in receiving SIGUSR2\n");
+    while (1)
+        pause();
 }
