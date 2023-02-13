@@ -1,16 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   client.c                                           :+:      :+:    :+:   */
+/*   client_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: seoshin <seoshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/12 19:08:00 by seoshin           #+#    #+#             */
-/*   Updated: 2023/02/13 17:01:49 by seoshin          ###   ########.fr       */
+/*   Created: 2023/02/12 19:08:04 by seoshin           #+#    #+#             */
+/*   Updated: 2023/02/13 21:56:58 by seoshin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "minitalk.h"
+
+void handler(int sig)
+{
+    if (sig == SIGUSR1)
+        print_msg("signal received well\n");
+    exit(0);
+}
 
 void bin_to_send(int pid, int bit)
 {
@@ -55,5 +62,10 @@ int main(int ac, char **av)
         exit(1);
     }
     else
+    {
+        signal(SIGUSR1, handler);
         str_to_ten(atoi(av[1]), av[2]);
+    }
+    while (1)
+        pause();
 }
