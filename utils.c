@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: seoshin <seoshin@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: seoshin <seoshin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 16:10:06 by seoshin           #+#    #+#             */
-/*   Updated: 2023/02/13 16:38:19 by seoshin          ###   ########.fr       */
+/*   Updated: 2023/02/14 20:16:29 by seoshin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,36 +52,36 @@ int	ft_atoi(const char *str)
 	return (ft_check(k, sign));
 }
 
-void print_num(long num)
+void	print_num(long num)
 {
-    char    c;
+	char	c;
 
-    if (num < 0)
-    {
-        write(1, "-", 1);
-        c = '0' + num % 10;
-        print_num(-(num / 10));
-    }
-    else
-    {
-        c = '0' + num % 10;
-        if (num / 10 != 0)
-            print_num(num / 10);
-    }
-    write(1, &c, 1);
+	if (num < 0)
+	{
+		write(1, "-", 1);
+		c = '0' + num % 10;
+		print_num(-(num / 10));
+	}
+	else
+	{
+		c = '0' + num % 10;
+		if (num / 10 != 0)
+			print_num(num / 10);
+	}
+	write(1, &c, 1);
 }
 
-size_t ft_strlen(char *str)
+size_t	ft_strlen(char *str)
 {
-    size_t  i;
+	size_t	i;
 
-    i = 0;
-    while (str[i])
-        i++;
-    return (i);
+	i = 0;
+	while (str[i])
+		i++;
+	return (i);
 }
 
-void print_msg(char *msg)
+void	print_msg(char *msg)
 {
-    write(1, msg, ft_strlen(msg));
+	write(1, msg, ft_strlen(msg));
 }
