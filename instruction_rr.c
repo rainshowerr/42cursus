@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   instruction_rr.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: seoshin <seoshin@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: seoshin <seoshin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 19:44:20 by seoshin           #+#    #+#             */
-/*   Updated: 2023/02/17 19:44:20 by seoshin          ###   ########.fr       */
+/*   Updated: 2023/02/24 04:52:09 by seoshin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void rra(t_deque *a)
+void	rra(t_deque *a)
 {
 	int data;
 
@@ -20,7 +20,7 @@ void rra(t_deque *a)
 	append_left(a, data);
 }
 
-void rrb(t_deque *b)
+void	rrb(t_deque *b)
 {
 	int data;
 
@@ -28,7 +28,7 @@ void rrb(t_deque *b)
 	append_left(b, data);
 }
 
-void rrr(t_deque *a, t_deque *b)
+void	rrr(t_deque *a, t_deque *b)
 {
 	rra(a);
 	rrb(b);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   instruction_s.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: seoshin <seoshin@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: seoshin <seoshin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 18:40:45 by seoshin           #+#    #+#             */
-/*   Updated: 2023/02/17 18:40:45 by seoshin          ###   ########.fr       */
+/*   Updated: 2023/02/24 05:16:06 by seoshin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void sa(t_deque *a)
 }
 */
 
-void sa(t_deque *a)
+void	sa(t_deque *a)
 {
 	int first;
 	int second;
@@ -36,11 +36,11 @@ void sa(t_deque *a)
 		return;
 	first = a->top->data;
 	second = a->top->next->data;
-	a->top->data = secont;
+	a->top->data = second;
 	a->top->next->data = first;
 }
 
-void sb(t_deque *b)
+void	sb(t_deque *b)
 {
 	int first;
 	int second;
@@ -49,11 +49,11 @@ void sb(t_deque *b)
 		return;
 	first = b->top->data;
 	second = b->top->next->data;
-	b->top->data = secont;
+	b->top->data = second;
 	b->top->next->data = first;
 }
 
-void ss(t_deque *a, t_deque *b)
+void	ss(t_deque *a, t_deque *b)
 {
 	sa(a);
 	sb(b);

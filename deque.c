@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   deque.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: seoshin <seoshin@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: seoshin <seoshin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 18:09:16 by seoshin           #+#    #+#             */
-/*   Updated: 2023/02/17 19:46:05 by seoshin          ###   ########.fr       */
+/*   Updated: 2023/02/24 07:09:34 by seoshin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,11 +51,12 @@ int pop_left(t_deque *deque)
 	int		data;
 
 	if (is_empty(deque))
-		print_emsg("pop_left error is occured\n");
+		print_emsg(deque);
 	ptr = deque->top;
 	data = ptr->data;
 	deque->top = ptr->next;
-	deque->top->prev = 0;
+	if (deque->top != 0)
+		deque->top->prev = 0;
 	deque->cnt--;
 	free(ptr);
 	return (data);
@@ -86,11 +87,12 @@ int pop(t_deque *deque)
 	int		data;
 
 	if (is_empty(deque))
-		print_emsg("pop error is occured\n");
+		print_emsg(deque);
 	ptr = deque->bottom;
 	data = ptr->data;
 	deque->bottom = ptr->prev;
-	deque->bottom->next = 0;
+	if (deque->bottom != 0)
+		deque->bottom->next = 0;
 	deque->cnt--;
 	free(ptr);
 	return (data);
