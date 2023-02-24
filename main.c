@@ -6,7 +6,7 @@
 /*   By: seoshin <seoshin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 18:09:10 by seoshin           #+#    #+#             */
-/*   Updated: 2023/02/24 07:20:33 by seoshin          ###   ########.fr       */
+/*   Updated: 2023/02/24 15:48:57 by seoshin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,39 @@ void	send_to_b(t_deque *a, t_deque *b, int *pivot)
 	}
 	while (a->cnt > 3)
 		pb(a, b);
+}
+
+int	find_place_a(t_deque *a, int num)
+{
+	int		cnt;
+	t_node	node;
+
+	cnt = 0;
+	node = a->top;
+	while(node)
+	{
+		// 맨 위 위치할 경우
+		if (node->prev == NULL && node->data > find)
+			break ;
+		// 삼각형 사이에 낑김 (작은 삼각형의 시작)
+		if (node->prev != NULL && node->prev->data > find && \
+			node->data > find && node->prev->data > node->data)
+			break ;
+		// 한 삼각형 사이에 잘 위치
+		if (node->prev != NULL && node->prev->data < find && \
+			node->data > find && node->prev->data < node->data)
+			break ;
+		// 삼각형 사이에 낑김 (큰 삼각형의 마지막)
+		if (node->prev != NULL && node->prev->data < find && \
+			node->data < find && node->prev->data > node->Data)
+			break;
+		node = node->next;
+		cnt++;
+	}
+	// cnt가 음수가 되면 rra?
+	if (cnt > a->size / 2)
+		cnt = cnt - a->cnt;
+	return (cnt);
 }
 
 int main(int ac, char *av[])
