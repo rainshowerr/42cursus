@@ -6,18 +6,18 @@
 /*   By: seoshin <seoshin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 21:18:29 by seoshin           #+#    #+#             */
-/*   Updated: 2023/02/24 04:00:55 by seoshin          ###   ########.fr       */
+/*   Updated: 2023/02/28 22:14:44 by seoshin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	is_one(int num, t_deque *deque)
+static int	is_one(int num, t_deque *deque)
 {
 	t_node	*node;
 
 	node = deque->top;
-	while(node)
+	while (node)
 	{
 		if (node->data == num)
 			print_emsg(deque);
@@ -29,20 +29,36 @@ int	is_one(int num, t_deque *deque)
 static int	is_int(char **av)
 {
 	int	i;
-	int j;
+	int	j;
 
 	i = 1;
-	while(av[i])
+	while (av[i])
 	{
+		if (av[i][0] == '\0')
+			return (0);
 		j = 0;
 		if (av[i][j] == '-' || av[i][j] == '+')
 			j++;
-		while(av[i][j])
+		while (av[i][j])
 		{
 			if (av[i][j] < '0' || '9' < av[i][j])
 				return (0);
 			j++;
 		}
+		i++;
+	}
+	return (1);
+}
+
+static int	is_sorted(char **av, t_deque *deque)
+{
+	int	i;
+
+	i = 1;
+	while (av[i])
+	{
+		if (av[i + 1] && ft_atoi(av[i], deque) > ft_atoi(av[i + 1], deque))
+			return (0);
 		i++;
 	}
 	return (1);
@@ -66,6 +82,8 @@ void	input(int ac, char **av, t_deque *deque)
 {
 	if (!is_int(av))
 		print_emsg(deque);
+	if (is_sorted(av, deque))
+		exit(1);
 	str_to_int(ac, av, deque);
 }
 

@@ -1,42 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   instruction_r.c                                    :+:      :+:    :+:   */
+/*   send_to_b.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: seoshin <seoshin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/17 19:36:31 by seoshin           #+#    #+#             */
-/*   Updated: 2023/02/28 20:22:53 by seoshin          ###   ########.fr       */
+/*   Created: 2023/02/28 13:56:30 by seoshin           #+#    #+#             */
+/*   Updated: 2023/02/28 20:27:15 by seoshin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	ra(t_deque *a)
+void	send_to_b(t_deque *a, t_deque *b, int *pivot)
 {
-	int	data;
+	int		i;
+	int		a_cnt;
 
-	data = pop_left(a);
-	append(a, data);
-	write(1, "ra\n", 3);
-}
-
-void	rb(t_deque *b)
-{
-	int	data;
-
-	data = pop_left(b);
-	append(b, data);
-	write(1, "rb\n", 3);
-}
-
-void	rr(t_deque *a, t_deque *b)
-{
-	int	data;
-
-	data = pop_left(a);
-	append(a, data);
-	data = pop_left(b);
-	append(b, data);
-	write(1, "rr\n", 3);
+	i = 0;
+	a_cnt = a->cnt;
+	while (i < a_cnt)
+	{
+		if (a->top->data <= pivot[1])
+		{
+			pb(a, b);
+			if (b->top->data <= pivot[0])
+				rb(b);
+		}
+		else
+			ra(a);
+		i++;
+	}
+	while (a->cnt > 3)
+		pb(a, b);
 }

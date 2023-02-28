@@ -6,11 +6,11 @@
 /*   By: seoshin <seoshin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 18:09:16 by seoshin           #+#    #+#             */
-/*   Updated: 2023/02/24 07:09:34 by seoshin          ###   ########.fr       */
+/*   Updated: 2023/02/28 20:15:00 by seoshin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "push_swap.h"
+#include "push_swap.h"
 
 int	is_empty(t_deque *deque)
 {
@@ -19,14 +19,7 @@ int	is_empty(t_deque *deque)
 	return (0);
 }
 
-void deque_init(t_deque *deque)
-{
-	deque->cnt = 0;
-	deque->top = 0;
-	deque->bottom = 0;
-}
-
-void append(t_deque *deque, int data)
+void	append(t_deque *deque, int data)
 {
 	t_node	*node;
 
@@ -45,7 +38,7 @@ void append(t_deque *deque, int data)
 	deque->cnt++;
 }
 
-int pop_left(t_deque *deque)
+int	pop_left(t_deque *deque)
 {
 	t_node	*ptr;
 	int		data;
@@ -62,7 +55,7 @@ int pop_left(t_deque *deque)
 	return (data);
 }
 
-void append_left(t_deque *deque, int data)
+void	append_left(t_deque *deque, int data)
 {
 	t_node	*node;
 
@@ -81,7 +74,7 @@ void append_left(t_deque *deque, int data)
 	deque->cnt++;
 }
 
-int pop(t_deque *deque)
+int	pop(t_deque *deque)
 {
 	t_node	*ptr;
 	int		data;

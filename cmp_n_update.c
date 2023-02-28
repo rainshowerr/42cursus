@@ -1,42 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   instruction_r.c                                    :+:      :+:    :+:   */
+/*   cmt_n_update.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: seoshin <seoshin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/17 19:36:31 by seoshin           #+#    #+#             */
-/*   Updated: 2023/02/28 20:22:53 by seoshin          ###   ########.fr       */
+/*   Created: 2023/02/28 13:17:27 by seoshin           #+#    #+#             */
+/*   Updated: 2023/02/28 13:17:36 by seoshin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	ra(t_deque *a)
+static int	ft_abs(int a)
 {
-	int	data;
-
-	data = pop_left(a);
-	append(a, data);
-	write(1, "ra\n", 3);
+	if (a < 0)
+		return (-a);
+	return (a);
 }
 
-void	rb(t_deque *b)
+int	cmp_n_update(int da, int db, int a_location, int b_location)
 {
-	int	data;
+	int	temp_a;
+	int	temp_b;
 
-	data = pop_left(b);
-	append(b, data);
-	write(1, "rb\n", 3);
-}
-
-void	rr(t_deque *a, t_deque *b)
-{
-	int	data;
-
-	data = pop_left(a);
-	append(a, data);
-	data = pop_left(b);
-	append(b, data);
-	write(1, "rr\n", 3);
+	temp_a = ft_abs(da) + ft_abs(db);
+	temp_b = ft_abs(a_location) + ft_abs(b_location);
+	if (temp_a < temp_b)
+		return (0);
+	return (1);
 }

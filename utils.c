@@ -6,19 +6,26 @@
 /*   By: seoshin <seoshin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 18:08:58 by seoshin           #+#    #+#             */
-/*   Updated: 2023/02/23 23:50:08 by seoshin          ###   ########.fr       */
+/*   Updated: 2023/02/28 20:30:21 by seoshin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "push_swap.h"
+#include "push_swap.h"
 
-static void	node_clear(t_deque *deque)
+void	deque_init(t_deque *deque)
+{
+	deque->cnt = 0;
+	deque->top = 0;
+	deque->bottom = 0;
+}
+
+void	node_clear(t_deque *deque)
 {
 	t_node	*node;
 	t_node	*temp;
 
 	node = deque->top;
-	while(node)
+	while (node)
 	{
 		temp = node;
 		node = node->next;
@@ -35,11 +42,8 @@ void	print_emsg(t_deque *deque)
 
 static int	ft_check(unsigned long long k, int sign, t_deque *deque)
 {
-	unsigned long long	max;
-	long long			num;
-
 	if ((sign > 0 && k > 2147483647) || (sign < 0 && k > 2147483648))
-			print_emsg(deque);
+		print_emsg(deque);
 	return (sign * (int)k);
 }
 
