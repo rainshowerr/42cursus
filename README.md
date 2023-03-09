@@ -12,3 +12,4 @@
 |Born2beroot|[![seoshin's 42 Born2beroot Score](https://badge42.vercel.app/api/v2/cl56gccpe001109mava0fxil5/project/2715429)](https://github.com/JaeSeoKim/badge42)|
 |so_long|[![seoshin's 42 so_long Score](https://badge42.vercel.app/api/v2/cl56gccpe001109mava0fxil5/project/2934098)](https://github.com/JaeSeoKim/badge42)|
 |minitalk|[![seoshin's 42 minitalk Score](https://badge42.vercel.app/api/v2/cl56gccpe001109mava0fxil5/project/2951411)](https://github.com/JaeSeoKim/badge42)|
+|push_swap|[![seoshin's 42 push_swap Score](https://badge42.vercel.app/api/v2/cl56gccpe001109mava0fxil5/project/2982818)](https://github.com/JaeSeoKim/badge42)|
