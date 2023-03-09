@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   go.c                                               :+:      :+:    :+:   */
+/*   sort_2345.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: seoshin <seoshin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/28 13:22:38 by seoshin           #+#    #+#             */
-/*   Updated: 2023/02/28 22:38:25 by seoshin          ###   ########.fr       */
+/*   Created: 2023/02/28 21:45:23 by seoshin           #+#    #+#             */
+/*   Updated: 2023/03/06 18:25:48 by seoshin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static void	sort_two(t_deque *a)
+void	sort_two(t_deque *a)
 {
 	if (a->top->data > a->top->next->data)
 		sa(a);
@@ -45,22 +45,48 @@ void	sort_three(t_deque *a)
 		rra(a);
 }
 
-// 수정고고
-static void	sort_big(t_deque *a, t_deque *b, int *pivot)
+void	sort_four(t_deque *a, t_deque *b, int *arr)
+
 {
-	send_to_b(a, b, pivot);
-	if (a->cnt == 2)
-		sort_two(a);
-	else if (a->cnt == 3)
-		sort_three(a);
+	int		first;
+	t_node	*node;
+
+	put_arr(arr, a);
+	q_sort(arr, 0, 3);
+	first = arr[0];
+	while (a->cnt > 3)
+	{
+		node = a->top;
+		if (node->data == first)
+			pb(a, b);
+		else
+			ra(a);
+	}
+	sort_three(a);
+	pa(a, b);
 }
 
-void	go(t_deque *a, t_deque *b, int *pivot)
+void	sort_five(t_deque *a, t_deque *b, int *arr)
 {
-	if (a->cnt == 2)
-		sort_two(a);
-	else if (a->cnt == 3)
-		sort_three(a);
-	else if (a->cnt > 3)
-		sort_big(a, b, pivot);
+	int		first;
+	int		second;
+	t_node	*node;
+
+	put_arr(arr, a);
+	q_sort(arr, 0, 4);
+	first = arr[0];
+	second = arr[1];
+	while (a->cnt > 3)
+	{
+		node = a->top;
+		if (node->data == first || node->data == second)
+			pb(a, b);
+		else
+			ra(a);
+	}
+	sort_three(a);
+	if (b->top->data == first)
+		sb(b);
+	pa(a, b);
+	pa(a, b);
 }

@@ -6,7 +6,7 @@
 /*   By: seoshin <seoshin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/28 13:12:37 by seoshin           #+#    #+#             */
-/*   Updated: 2023/02/28 20:10:18 by seoshin          ###   ########.fr       */
+/*   Updated: 2023/03/06 16:13:07 by seoshin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,13 +62,13 @@ static void	get_min(t_deque *a, t_deque *b, int *da, int *db)
 	int			data;
 	int			a_location;
 	int			b_location;
-	t_node		*temp;
+	t_node		*node;
 
 	idx = 0;
-	temp = b->top;
+	node = b->top;
 	while (idx < b->cnt)
 	{
-		data = temp->data;
+		data = node->data;
 		a_location = loc_a(a, data);
 		if (idx > b->cnt / 2)
 			b_location = idx - b->cnt;
@@ -79,7 +79,7 @@ static void	get_min(t_deque *a, t_deque *b, int *da, int *db)
 			*da = a_location;
 			*db = b_location;
 		}
-		temp = temp->next;
+		node = node->next;
 		idx++;
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: seoshin <seoshin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/28 13:23:45 by seoshin           #+#    #+#             */
-/*   Updated: 2023/02/28 20:20:52 by seoshin          ###   ########.fr       */
+/*   Updated: 2023/03/06 16:30:11 by seoshin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ static int	find_max_index(t_deque *a, int max)
 		idx++;
 		node = node->next;
 	}
-	if (idx > a->cnt / 2)
+	if (idx >= a->cnt / 2)
 		idx -= a->cnt;
 	return (idx);
 }
