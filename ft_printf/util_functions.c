@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   util_functions.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: seoshin <seoshin@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: seoshin <seoshin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/07 21:47:10 by seoshin           #+#    #+#             */
-/*   Updated: 2022/08/07 22:11:01 by seoshin          ###   ########.fr       */
+/*   Updated: 2023/02/21 00:33:35 by seoshin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ int	ft_putnbr(long long n)
 
 int	ft_hexadec(unsigned long long nbr, char *base)
 {
-	int		len;
+	int	len;
 
 	len = 0;
 	if (nbr < 16)

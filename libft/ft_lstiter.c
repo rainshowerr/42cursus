@@ -14,7 +14,7 @@
 
 void	ft_lstiter(t_list *lst, void (*f)(void *))
 {
-	if (lst == 0) // 터뜨리자~!
+	if (lst == 0)
 		lst = lst->next;
 	while (lst)
 	{

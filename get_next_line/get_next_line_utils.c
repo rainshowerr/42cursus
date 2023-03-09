@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: seoshin <seoshin@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: seoshin <seoshin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 18:36:58 by seoshin           #+#    #+#             */
-/*   Updated: 2022/07/31 19:22:25 by seoshin          ###   ########.fr       */
+/*   Updated: 2023/02/21 00:34:32 by seoshin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,10 @@ size_t	ft_strlen(const char	*src)
 char	*ft_strjoin(char *s1, char *s2)
 {
 	char	*str;
-	int	i;
-	int	j;
-	int	s1_len;
-	int	s2_len;
+	int		i;
+	int		j;
+	int		s1_len;
+	int		s2_len;
 
 	if (s1 == 0)
 		return (ft_strdup(s2));
