@@ -6,13 +6,13 @@
 /*   By: seoshin <seoshin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 17:38:40 by seoshin           #+#    #+#             */
-/*   Updated: 2023/03/13 21:24:34 by seoshin          ###   ########.fr       */
+/*   Updated: 2023/03/18 14:00:49 by seoshin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-unsigned long long	get_time(void)
+unsigned long long	ft_time(void)
 {
 	struct timeval time;
 	gettimeofday(&time, NULL);
