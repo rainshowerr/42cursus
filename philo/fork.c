@@ -1,17 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test.c                                             :+:      :+:    :+:   */
+/*   fork.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: seoshin <seoshin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/18 16:31:42 by seoshin           #+#    #+#             */
-/*   Updated: 2023/03/18 16:33:16 by seoshin          ###   ########.fr       */
+/*   Created: 2023/03/18 16:04:55 by seoshin           #+#    #+#             */
+/*   Updated: 2023/03/20 20:36:07 by seoshin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-// int main(){
-//     printf("%llu", ft_time());
-// }
+void	fork_lock(t_philo *philo)
+{
+	pthread_mutex_lock(&(philo->given->fork[philo->left]));
+	pthread_mutex_lock(&(philo->given->fork[philo->right]));
+}
+
+void	fork_unlock(t_philo *philo)
+{
+	pthread_mutex_unlock(&philo->given->fork[philo->right]);
+	pthread_mutex_unlock(&philo->given->fork[philo->left]);
+}
