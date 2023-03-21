@@ -3,14 +3,29 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: seoshin <seoshin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: seoshin <seoshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 17:38:40 by seoshin           #+#    #+#             */
-/*   Updated: 2023/03/18 14:00:49 by seoshin          ###   ########.fr       */
+/*   Updated: 2023/03/21 22:09:20 by seoshin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
+
+void	ft_usleep(t_philo *philo, int time)
+{
+	unsigned long long	t1;
+	unsigned long long	t2;
+
+	t1 = ft_time();
+	while (!(philo->given->flag))
+	{
+		t2 = ft_time();
+		if ((t2 - t1) >= time)
+			break ;
+		usleep(10);
+	}
+}
 
 unsigned long long	ft_time(void)
 {

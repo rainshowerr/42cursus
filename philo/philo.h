@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: seoshin <seoshin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: seoshin <seoshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 17:10:12 by seoshin           #+#    #+#             */
-/*   Updated: 2023/03/20 17:22:49 by seoshin          ###   ########.fr       */
+/*   Updated: 2023/03/21 22:08:55 by seoshin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ typedef struct s_philo
 	int					id;
 	int					left;
 	int					right;
-	int					last_eat;
+	unsigned long long	last_eat;
 	pthread_t			thread;
 } t_philo;
 
@@ -60,6 +60,7 @@ void	ft_eat(t_philo *philo);
 void	ft_sleep(t_philo *philo);
 void	ft_thinking(t_philo *philo);
 // utils.c
+void	ft_usleep(t_philo *philo, int time);
 unsigned long long	ft_time(void);
 int		ft_atoi(const char *str);
 

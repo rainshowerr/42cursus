@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: seoshin <seoshin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: seoshin <seoshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 17:18:10 by seoshin           #+#    #+#             */
-/*   Updated: 2023/03/20 22:14:01 by seoshin          ###   ########.fr       */
+/*   Updated: 2023/03/21 22:15:53 by seoshin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,8 @@ void	wait_finish(t_philo *philo)
 
 	while (philo[0].given->flag == 0)
 	{
-		is_everyone_ate(philo);
-		hungerCheck(philo);
+		if (is_everyone_ate(philo) == 0)
+			hungerCheck(philo);
 		if (philo[0].given->flag != 0)
 			break;
 		usleep(1);
@@ -45,6 +45,7 @@ void	wait_finish(t_philo *philo)
 		pthread_join(philo[i].thread, NULL);
 		i++;
 	}
+	printf("%d\n", philo[0].given->flag);
 	if (philo[0].given->flag > 0)
 		printf("%llu %d died\n", ft_time() - philo[0].given->start, philo[0].given->flag);
 }
@@ -56,6 +57,7 @@ void	make_thread(t_philo *philo)
 	i = 0;
 	while (i < philo[0].given->num_of_philos)
 	{
+		philo[i].last_eat = ft_time();
 		pthread_create(&philo[i].thread, NULL, go, &(philo[i]));
 		i++;
 	}
