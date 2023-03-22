@@ -6,7 +6,7 @@
 /*   By: seoshin <seoshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 17:18:10 by seoshin           #+#    #+#             */
-/*   Updated: 2023/03/21 22:15:53 by seoshin          ###   ########.fr       */
+/*   Updated: 2023/03/22 22:15:04 by seoshin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@ void	*go(void	*tmp)
 {
 	t_philo	*philo = (t_philo *)tmp;
 	// 짝수번째는 재움
-	if ((philo->id + 1) % 2 == 0)
-		usleep(100);
+	if ((philo->id) % 2)
+		usleep(1000);
 	while (philo->given->flag == 0)
 	{
 		ft_eat(philo);
@@ -45,7 +45,6 @@ void	wait_finish(t_philo *philo)
 		pthread_join(philo[i].thread, NULL);
 		i++;
 	}
-	printf("%d\n", philo[0].given->flag);
 	if (philo[0].given->flag > 0)
 		printf("%llu %d died\n", ft_time() - philo[0].given->start, philo[0].given->flag);
 }

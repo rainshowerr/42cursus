@@ -6,7 +6,7 @@
 /*   By: seoshin <seoshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/18 16:08:58 by seoshin           #+#    #+#             */
-/*   Updated: 2023/03/21 21:50:28 by seoshin          ###   ########.fr       */
+/*   Updated: 2023/03/22 21:41:38 by seoshin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,6 @@ int is_everyone_ate(t_philo *philo)
         return (0);
     while(i < philo[0].given->num_of_philos)
     {
-        //printf("must eat%d\n", philo[0].given->must_eat);
-        //printf("eat cnt : %d\n", philo[0].given->eat_cnt[0]);
         if (philo[0].given->eat_cnt[i] < philo[0].given->must_eat)
             return (0);
         i++;
@@ -43,7 +41,6 @@ void    hungerCheck(t_philo *philo)
     {
         if (ft_time() - philo[i].last_eat >= philo[i].given->time_to_die)
         {
-            printf("time : %llu\n", ft_time() - philo[i].last_eat);
             flag = i + 1;
             break;
         }

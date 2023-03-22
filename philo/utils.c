@@ -6,7 +6,7 @@
 /*   By: seoshin <seoshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 17:38:40 by seoshin           #+#    #+#             */
-/*   Updated: 2023/03/21 22:09:20 by seoshin          ###   ########.fr       */
+/*   Updated: 2023/03/22 21:34:55 by seoshin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ unsigned long long	ft_time(void)
 {
 	struct timeval time;
 	gettimeofday(&time, NULL);
-	return (time.tv_sec * 1000000 + time.tv_usec * 1000);
+	return (time.tv_sec * 1000 + time.tv_usec / 1000);
 }
 
 static int	ft_check(unsigned long long k, int sign)
