@@ -6,7 +6,7 @@
 /*   By: seoshin <seoshin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 17:18:10 by seoshin           #+#    #+#             */
-/*   Updated: 2023/03/27 17:45:13 by seoshin          ###   ########.fr       */
+/*   Updated: 2023/03/27 20:10:58 by seoshin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@ void	wait_finish(t_philo *philo)
 	while (philo->given->dieFlag == 0 && philo->given->allEatFlag == 0)
 	{
 		pthread_mutex_lock(&philo->given->flag_mtx);
+		if (philo->given->finEat == philo->given->num_of_philos)
+			philo->given->allEatFlag = 1;
 		if (!philo->given->allEatFlag)
 			hungerCheck(philo);
 		if (philo->given->allEatFlag != 0 || philo->given->dieFlag != 0)
