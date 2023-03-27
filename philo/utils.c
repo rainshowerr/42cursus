@@ -6,7 +6,7 @@
 /*   By: seoshin <seoshin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 17:38:40 by seoshin           #+#    #+#             */
-/*   Updated: 2023/03/24 21:17:36 by seoshin          ###   ########.fr       */
+/*   Updated: 2023/03/27 17:44:14 by seoshin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	ft_usleep(t_philo *philo, int time)
 	unsigned long long	t2;
 
 	t1 = ft_time();
-	while (!(philo->given->flag))
+	while (1)
 	{
 		t2 = ft_time();
 		if ((t2 - t1) >= time)

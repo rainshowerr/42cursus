@@ -6,7 +6,7 @@
 /*   By: seoshin <seoshin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 16:32:28 by seoshin           #+#    #+#             */
-/*   Updated: 2023/03/24 21:00:17 by seoshin          ###   ########.fr       */
+/*   Updated: 2023/03/27 17:41:53 by seoshin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int	init_mutex(t_given *given)
 
 	pthread_mutex_init(&given->print_mtx, NULL);
 	pthread_mutex_init(&given->eatinfo_mtx, NULL);
-	pthread_mutex_init(&given->check_mtx, NULL);
+	pthread_mutex_init(&given->flag_mtx, NULL);
 	given->fork = (pthread_mutex_t *)malloc(sizeof(pthread_mutex_t) * given->num_of_philos);
 	if (!given->fork)
 		return (0);
@@ -65,8 +65,9 @@ int	init_given(int ac, char **av, t_given *given)
 		given->must_eat = ft_atoi(av[5]);
 	else
 		given->must_eat = 0;
-	given->flag = 0; // 플래그 초기값은 0
 	given->finEat = 0;
+	given->dieFlag = 0;
+	given->allEatFlag = 0;
 	given->start = ft_time();
 	if (!init_mutex(given))
 		return (0);

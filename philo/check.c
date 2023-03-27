@@ -6,7 +6,7 @@
 /*   By: seoshin <seoshin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/18 16:08:58 by seoshin           #+#    #+#             */
-/*   Updated: 2023/03/24 21:58:26 by seoshin          ###   ########.fr       */
+/*   Updated: 2023/03/27 17:33:55 by seoshin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,18 +21,6 @@ int errCheck(int ac, char **av)
 	if (ac == 6 && av[5] < 0) // 밥 먹어야 하는 횟수가 음수인 경우
 		return (1);
     return (0);
-}
-
-int is_everyone_eat(t_philo *philo)
-{
-    int i;
-    int cnt;
-
-    if (!philo->given->must_eat)
-        return (0);
-    if (philo->given->finEat == philo->given->num_of_philos)
-		philo->given->flag = -1;
-    return (1);
 }
 
 void    hungerCheck(t_philo *philo)
@@ -52,5 +40,8 @@ void    hungerCheck(t_philo *philo)
         i++;
     }
 	if (flag != 0)
-		philo->given->flag = flag;
+    {
+        philo->given->dieFlag = flag;
+        printf("%llu %d died\n", ft_time() - philo->given->start, philo->given->dieFlag);
+    }
 }

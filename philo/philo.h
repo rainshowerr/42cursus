@@ -6,7 +6,7 @@
 /*   By: seoshin <seoshin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 17:10:12 by seoshin           #+#    #+#             */
-/*   Updated: 2023/03/27 15:53:48 by seoshin          ###   ########.fr       */
+/*   Updated: 2023/03/27 17:32:21 by seoshin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,13 @@ typedef struct s_given
 	int					time_to_sleep;
 	int					must_eat;
 	unsigned long long	start;
-	int					flag;
+	int					dieFlag;
+	int					allEatFlag;
 	int					finEat;
 	pthread_mutex_t		*fork;
 	pthread_mutex_t		print_mtx;
 	pthread_mutex_t		eatinfo_mtx;
-	pthread_mutex_t		check_mtx;
+	pthread_mutex_t		flag_mtx;
 } t_given;
 
 typedef struct s_philo
@@ -49,7 +50,6 @@ typedef struct s_philo
 
 // check.c
 int 	errCheck(int ac, char **av);
-int		is_everyone_eat(t_philo *philo);
 void    mealCntCheck(t_philo *philo);
 void    hungerCheck(t_philo *philo);
 // init.c
@@ -64,7 +64,7 @@ void	ft_eat(t_philo *philo);
 void	ft_sleep(t_philo *philo);
 void	ft_thinking(t_philo *philo);
 // utils.c
-void	state_print(t_philo *philo, int i);
+void	state_print(t_philo *philo, char c);
 void	ft_usleep(t_philo *philo, int time);
 unsigned long long	ft_time(void);
 int		ft_atoi(const char *str);

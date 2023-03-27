@@ -6,7 +6,7 @@
 /*   By: seoshin <seoshin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 17:18:10 by seoshin           #+#    #+#             */
-/*   Updated: 2023/03/27 15:53:35 by seoshin          ###   ########.fr       */
+/*   Updated: 2023/03/27 17:45:13 by seoshin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	*go(void	*tmp)
 		a_philo(philo);
 	else
 	{
-		while (philo->given->flag == 0)
+		while (philo->given->dieFlag == 0 && philo->given->allEatFlag == 0)
 		{
 			ft_eat(philo);
 			ft_sleep(philo);
@@ -35,14 +35,14 @@ void	wait_finish(t_philo *philo)
 {
 	int	i;
 
-	while (philo->given->flag == 0)
+	while (philo->given->dieFlag == 0 && philo->given->allEatFlag == 0)
 	{
-		pthread_mutex_lock(&philo->given->check_mtx);
-		if (is_everyone_eat(philo) == 0)
+		pthread_mutex_lock(&philo->given->flag_mtx);
+		if (!philo->given->allEatFlag)
 			hungerCheck(philo);
-		if (philo->given->flag != 0)
+		if (philo->given->allEatFlag != 0 || philo->given->dieFlag != 0)
 			break;
-		pthread_mutex_unlock(&philo->given->check_mtx);
+		pthread_mutex_unlock(&philo->given->flag_mtx);
 		usleep(100);
 	}
 	i = 0;
@@ -51,8 +51,6 @@ void	wait_finish(t_philo *philo)
 		pthread_join(philo[i].thread, NULL);
 		i++;
 	}
-	if (philo->given->flag > 0)
-		printf("%llu %d died\n", ft_time() - philo->given->start, philo->given->flag);
 }
 
 void	make_thread(t_philo *philo)
@@ -64,7 +62,6 @@ void	make_thread(t_philo *philo)
 	while (i < philo->given->num_of_philos)
 	{
 		philo[i].last_eat = philo->given->start;
-		// 라스트슬립?
 		pthread_create(&philo[i].thread, NULL, go, &(philo[i]));
 		i++;
 	}
