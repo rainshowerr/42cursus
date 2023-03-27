@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: seoshin <seoshin@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: seoshin <seoshin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 17:18:10 by seoshin           #+#    #+#             */
-/*   Updated: 2023/03/22 22:15:04 by seoshin          ###   ########.fr       */
+/*   Updated: 2023/03/27 15:53:35 by seoshin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,18 @@
 void	*go(void	*tmp)
 {
 	t_philo	*philo = (t_philo *)tmp;
-	// 짝수번째는 재움
-	if ((philo->id) % 2)
+	if ((philo->id + 1) % 2)
 		usleep(1000);
-	while (philo->given->flag == 0)
+	if (philo->given->num_of_philos == 1)
+		a_philo(philo);
+	else
 	{
-		ft_eat(philo);
-		ft_sleep(philo);
-		ft_thinking(philo);
+		while (philo->given->flag == 0)
+		{
+			ft_eat(philo);
+			ft_sleep(philo);
+			ft_thinking(philo);
+		}
 	}
 	return (0);
 }
@@ -31,22 +35,24 @@ void	wait_finish(t_philo *philo)
 {
 	int	i;
 
-	while (philo[0].given->flag == 0)
+	while (philo->given->flag == 0)
 	{
-		if (is_everyone_ate(philo) == 0)
+		pthread_mutex_lock(&philo->given->check_mtx);
+		if (is_everyone_eat(philo) == 0)
 			hungerCheck(philo);
-		if (philo[0].given->flag != 0)
+		if (philo->given->flag != 0)
 			break;
-		usleep(1);
+		pthread_mutex_unlock(&philo->given->check_mtx);
+		usleep(100);
 	}
 	i = 0;
-	while (i < philo[0].given->num_of_philos)
+	while (i < philo->given->num_of_philos)
 	{
 		pthread_join(philo[i].thread, NULL);
 		i++;
 	}
-	if (philo[0].given->flag > 0)
-		printf("%llu %d died\n", ft_time() - philo[0].given->start, philo[0].given->flag);
+	if (philo->given->flag > 0)
+		printf("%llu %d died\n", ft_time() - philo->given->start, philo->given->flag);
 }
 
 void	make_thread(t_philo *philo)
@@ -54,9 +60,11 @@ void	make_thread(t_philo *philo)
 	int	i;
 
 	i = 0;
-	while (i < philo[0].given->num_of_philos)
+	philo->given->start = ft_time();
+	while (i < philo->given->num_of_philos)
 	{
-		philo[i].last_eat = ft_time();
+		philo[i].last_eat = philo->given->start;
+		// 라스트슬립?
 		pthread_create(&philo[i].thread, NULL, go, &(philo[i]));
 		i++;
 	}
@@ -67,12 +75,13 @@ int	main(int ac, char *av[])
 	t_given	given;
 	t_philo	*philo;
 
+	if (errCheck(ac, av))
+		return (0);
 	if (!init_given(ac, av, &given))
 		return (0);
 	if (!init_philo(&philo, &given))
 		return (0);
 	make_thread(philo);
 	wait_finish(philo);
-	
 }
 

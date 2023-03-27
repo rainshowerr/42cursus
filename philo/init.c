@@ -6,7 +6,7 @@
 /*   By: seoshin <seoshin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 16:32:28 by seoshin           #+#    #+#             */
-/*   Updated: 2023/03/20 21:52:34 by seoshin          ###   ########.fr       */
+/*   Updated: 2023/03/24 21:00:17 by seoshin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,9 @@ int	init_mutex(t_given *given)
 {
 	int	i;
 
-	pthread_mutex_init(&given->print, NULL);
+	pthread_mutex_init(&given->print_mtx, NULL);
+	pthread_mutex_init(&given->eatinfo_mtx, NULL);
+	pthread_mutex_init(&given->check_mtx, NULL);
 	given->fork = (pthread_mutex_t *)malloc(sizeof(pthread_mutex_t) * given->num_of_philos);
 	if (!given->fork)
 		return (0);
@@ -53,7 +55,7 @@ int	init_given(int ac, char **av, t_given *given)
 {
 	int	i;
 	// 예외처리 필요
-	if (!(ac == 5 || ac == 6))
+	if (errCheck(ac, av))
 		return (0);
 	given->num_of_philos = ft_atoi(av[1]);
 	given->time_to_die = ft_atoi(av[2]);
@@ -64,13 +66,8 @@ int	init_given(int ac, char **av, t_given *given)
 	else
 		given->must_eat = 0;
 	given->flag = 0; // 플래그 초기값은 0
+	given->finEat = 0;
 	given->start = ft_time();
-	given->eat_cnt = (int *)malloc(sizeof(int) * given->num_of_philos);
-	if (!given->eat_cnt)
-		return (0);
-	i = 0;
-	while(i < given->num_of_philos)
-		given->eat_cnt[i++] = 0;
 	if (!init_mutex(given))
 		return (0);
 	return (1);

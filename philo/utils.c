@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: seoshin <seoshin@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: seoshin <seoshin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 17:38:40 by seoshin           #+#    #+#             */
-/*   Updated: 2023/03/22 21:34:55 by seoshin          ###   ########.fr       */
+/*   Updated: 2023/03/24 21:17:36 by seoshin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	ft_usleep(t_philo *philo, int time)
 		t2 = ft_time();
 		if ((t2 - t1) >= time)
 			break ;
-		usleep(10);
+		usleep(100);
 	}
 }
 
