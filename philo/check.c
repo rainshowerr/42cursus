@@ -6,7 +6,7 @@
 /*   By: seoshin <seoshin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/18 16:08:58 by seoshin           #+#    #+#             */
-/*   Updated: 2023/03/27 17:59:53 by seoshin          ###   ########.fr       */
+/*   Updated: 2023/03/27 20:57:45 by seoshin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,22 +26,17 @@ int errCheck(int ac, char **av)
 void    hungerCheck(t_philo *philo)
 {
     int i;
-	int	flag;
 
     i = 0;
-	flag = 0;
     while (i < philo->given->num_of_philos)
     {
         if (ft_time() - philo[i].last_eat >= philo->given->time_to_die)
         {
-            flag = i + 1;
+            printf("%d %llu >= %d\n", philo[i].id, ft_time() - philo[i].last_eat, philo->given->time_to_die);
+            philo->given->dieFlag = i + 1;
+            printf("%llu %d died\n", ft_time() - philo->given->start, philo->given->dieFlag);
             break;
         }
         i++;
-    }
-	if (flag != 0)
-    {
-        philo->given->dieFlag = flag;
-        printf("%llu %d died\n", ft_time() - philo->given->start, philo->given->dieFlag);
     }
 }
