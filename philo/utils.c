@@ -6,16 +6,16 @@
 /*   By: seoshin <seoshin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 17:38:40 by seoshin           #+#    #+#             */
-/*   Updated: 2023/03/27 17:44:14 by seoshin          ###   ########.fr       */
+/*   Updated: 2023/03/31 13:37:36 by seoshin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-void	ft_usleep(t_philo *philo, int time)
+void	ft_usleep( int time)
 {
-	unsigned long long	t1;
-	unsigned long long	t2;
+	long long	t1;
+	long long	t2;
 
 	t1 = ft_time();
 	while (1)
@@ -27,16 +27,17 @@ void	ft_usleep(t_philo *philo, int time)
 	}
 }
 
-unsigned long long	ft_time(void)
+long long	ft_time(void)
 {
-	struct timeval time;
+	struct timeval	time;
+
 	gettimeofday(&time, NULL);
 	return (time.tv_sec * 1000 + time.tv_usec / 1000);
 }
 
-static int	ft_check(unsigned long long k, int sign)
+static int	ft_check(long long k, int sign)
 {
-	unsigned long long	max;
+	long long	max;
 
 	max = 9223372036854775807;
 	if (k > max && sign > 0)
@@ -51,7 +52,7 @@ int	ft_atoi(const char *str)
 {
 	int					idx;
 	int					sign;
-	unsigned long long	k;
+	long long	k;
 
 	idx = 0;
 	sign = 1;

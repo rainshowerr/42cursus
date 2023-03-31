@@ -6,7 +6,7 @@
 /*   By: seoshin <seoshin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 16:30:46 by seoshin           #+#    #+#             */
-/*   Updated: 2023/03/27 22:03:09 by seoshin          ###   ########.fr       */
+/*   Updated: 2023/03/31 13:50:11 by seoshin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,23 +15,25 @@
 void	ft_eat(t_philo *philo)
 {
 	fork_lock(philo);
+	pthread_mutex_lock(&philo->info->lasteat_mtx);
 	philo->last_eat = ft_time();
+	pthread_mutex_unlock(&philo->info->lasteat_mtx);
 	philo->eat_cnt++;
 	state_print(philo, 'e');
-	if (philo->eat_cnt == philo->given->must_eat)
+	if (philo->eat_cnt == philo->info->must_eat)
 	{
-		pthread_mutex_lock(&philo->given->eatinfo_mtx);
-		philo->given->finEat++;
-		pthread_mutex_unlock(&philo->given->eatinfo_mtx);
+		pthread_mutex_lock(&philo->info->fineat_mtx);
+		philo->info->fineat++;
+		pthread_mutex_unlock(&philo->info->fineat_mtx);
 	}
+	ft_usleep(philo->info->time_to_eat);
 	fork_unlock(philo);
-	ft_usleep(philo, philo->given->time_to_eat);
 }
 
 void	ft_sleep(t_philo *philo)
 {
 	state_print(philo, 's');
-	ft_usleep(philo, philo->given->time_to_sleep);
+	ft_usleep(philo->info->time_to_sleep);
 }
 
 void	ft_thinking(t_philo *philo)
@@ -42,21 +44,24 @@ void	ft_thinking(t_philo *philo)
 
 void	state_print(t_philo *philo, char c)
 {
-	if (!philo->given->dieFlag && !philo->given->allEatFlag)
+	if (!ft_eatflag_read(philo) && !ft_dieflag_read(philo))
 	{
-		pthread_mutex_lock(&philo->given->print_mtx);
-		if (c == 'e')
-		{
-			printf("%llu %d is eating\n", ft_time() - philo->given->start, philo->id + 1);
-		}
+		pthread_mutex_lock(&philo->info->print_mtx);
+		if (c == 'f')
+			printf("%llu %d has taken a fork\n", \
+			ft_time() - philo->info->start, philo->id + 1);
+		else if (c == 'e')
+			printf("%llu %d is eating\n", \
+			ft_time() - philo->info->start, philo->id + 1);
 		else if (c == 's')
-		{
-			printf("%llu %d is sleeping\n", ft_time() - philo->given->start, philo->id + 1);
-		}
+			printf("%llu %d is sleeping\n", \
+			ft_time() - philo->info->start, philo->id + 1);
 		else if (c == 't')
-		{
-			printf("%llu %d is thinking\n", ft_time() - philo->given->start, philo->id + 1);
-		}
-		pthread_mutex_unlock(&philo->given->print_mtx);
+			printf("%llu %d is thinking\n", \
+			ft_time() - philo->info->start, philo->id + 1);
+		else if (c == 'd')
+			printf("%llu %d died\n", \
+			ft_time() - philo->info->start, philo->id + 1);
+		pthread_mutex_unlock(&philo->info->print_mtx);
 	}
 }
