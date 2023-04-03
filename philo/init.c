@@ -6,7 +6,7 @@
 /*   By: seoshin <seoshin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 16:32:28 by seoshin           #+#    #+#             */
-/*   Updated: 2023/03/31 13:47:43 by seoshin          ###   ########.fr       */
+/*   Updated: 2023/04/03 18:15:32 by seoshin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,6 @@ int	init_mutex(t_info *info)
 
 int	init_info(int ac, char **av, t_info *info)
 {
-	if (errcheck(ac, av))
-		return (0);
 	info->num_of_philos = ft_atoi(av[1]);
 	info->time_to_die = ft_atoi(av[2]);
 	info->time_to_eat = ft_atoi(av[3]);

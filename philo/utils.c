@@ -6,7 +6,7 @@
 /*   By: seoshin <seoshin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 17:38:40 by seoshin           #+#    #+#             */
-/*   Updated: 2023/03/31 13:37:36 by seoshin          ###   ########.fr       */
+/*   Updated: 2023/04/03 16:54:46 by seoshin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,8 @@ static int	ft_check(long long k, int sign)
 
 int	ft_atoi(const char *str)
 {
-	int					idx;
-	int					sign;
+	int			idx;
+	int			sign;
 	long long	k;
 
 	idx = 0;

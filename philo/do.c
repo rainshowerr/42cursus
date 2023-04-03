@@ -6,7 +6,7 @@
 /*   By: seoshin <seoshin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 16:30:46 by seoshin           #+#    #+#             */
-/*   Updated: 2023/03/31 13:50:11 by seoshin          ###   ########.fr       */
+/*   Updated: 2023/04/03 17:47:58 by seoshin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,19 +48,16 @@ void	state_print(t_philo *philo, char c)
 	{
 		pthread_mutex_lock(&philo->info->print_mtx);
 		if (c == 'f')
-			printf("%llu %d has taken a fork\n", \
+			printf("%lld %d has taken a fork\n", \
 			ft_time() - philo->info->start, philo->id + 1);
 		else if (c == 'e')
-			printf("%llu %d is eating\n", \
+			printf("%lld %d is eating\n", \
 			ft_time() - philo->info->start, philo->id + 1);
 		else if (c == 's')
-			printf("%llu %d is sleeping\n", \
+			printf("%lld %d is sleeping\n", \
 			ft_time() - philo->info->start, philo->id + 1);
 		else if (c == 't')
-			printf("%llu %d is thinking\n", \
-			ft_time() - philo->info->start, philo->id + 1);
-		else if (c == 'd')
-			printf("%llu %d died\n", \
+			printf("%lld %d is thinking\n", \
 			ft_time() - philo->info->start, philo->id + 1);
 		pthread_mutex_unlock(&philo->info->print_mtx);
 	}

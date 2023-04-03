@@ -6,7 +6,7 @@
 /*   By: seoshin <seoshin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 17:18:10 by seoshin           #+#    #+#             */
-/*   Updated: 2023/03/31 13:47:38 by seoshin          ###   ########.fr       */
+/*   Updated: 2023/04/03 18:19:36 by seoshin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,11 +82,12 @@ int	main(int ac, char *av[])
 	t_philo	*philo;
 
 	if (errcheck(ac, av))
-		return (0);
+		return (1);
 	if (!init_info(ac, av, &info))
-		return (0);
+		return (1);
 	if (!init_philo(&philo, &info))
-		return (0);
+		return (1);
 	make_thread(philo);
 	wait_finish(philo);
+	return (0);
 }

@@ -6,18 +6,18 @@
 /*   By: seoshin <seoshin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 12:20:17 by seoshin           #+#    #+#             */
-/*   Updated: 2023/03/31 13:47:38 by seoshin          ###   ########.fr       */
+/*   Updated: 2023/04/03 17:49:53 by seoshin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-void    ft_free(t_philo *philo)
+void	ft_free(t_philo *philo)
 {
 	int	i;
 
 	i = 0;
-	while(i < philo->info->num_of_philos)
+	while (i < philo->info->num_of_philos)
 	{
 		pthread_mutex_destroy(&philo->info->fork[i]);
 		i++;
