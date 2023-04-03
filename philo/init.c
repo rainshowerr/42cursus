@@ -6,7 +6,7 @@
 /*   By: seoshin <seoshin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 16:32:28 by seoshin           #+#    #+#             */
-/*   Updated: 2023/04/03 18:15:32 by seoshin          ###   ########.fr       */
+/*   Updated: 2023/04/03 18:53:08 by seoshin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,10 @@ int	init_philo(t_philo **philo, t_info *info)
 
 	*philo = (t_philo *)malloc(sizeof(t_philo) * info->num_of_philos);
 	if (!philo)
+	{
+		free(info->fork);
 		return (0);
+	}
 	i = 0;
 	while (i < info->num_of_philos)
 	{
