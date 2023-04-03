@@ -6,7 +6,7 @@
 /*   By: seoshin <seoshin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 17:10:12 by seoshin           #+#    #+#             */
-/*   Updated: 2023/04/03 18:37:08 by seoshin          ###   ########.fr       */
+/*   Updated: 2023/04/03 18:56:02 by seoshin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,6 @@ typedef struct s_philo
 }t_philo;
 
 int			errcheck(int ac, char **av);
-void		mealCntCheck(t_philo *philo);
 void		hungercheck(t_philo *philo);
 int			init_philo(t_philo **philo, t_info *info);
 int			init_mutex(t_info *info);
